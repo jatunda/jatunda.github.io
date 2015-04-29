@@ -1,4 +1,4 @@
-# My portfolio
+# Random Website
 
 My name is [Eric Hsieh](http://twitter.com/jatunda)
 
