@@ -21,7 +21,7 @@ function get_d100_effects()
 	{
 		if(k == old_key)
 		{
-			k = keys[keys.length * Math.random() << 0
+			k = keys[keys.length * Math.random() << 0]
 		}
 		else
 		{
