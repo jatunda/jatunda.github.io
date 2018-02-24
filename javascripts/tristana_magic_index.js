@@ -1,5 +1,5 @@
 var d100_effects = {
-	'old_key':null
+	'old_key':null,
 	'1':"yes",
 	'2':"no",
 	'3':"maybe",
@@ -15,6 +15,18 @@ var randomProperty = function (obj) {
 function get_d100_effects()
 {
 	var keys = Object.keys(d100_effects)
-	return d100_effects[keys[keys.length * Math.random() << 0]]
+	var k = keys[keys.length * Math.random() << 0]
 	// << 0 basically does Math.floor()
+	for(var i = 0; i < 100; i++)
+	{
+		if(k == old_key)
+		{
+			k = keys[keys.length * Math.random() << 0
+		}
+		else
+		{
+			break;
+		}
+	}
+	return d100_effects[k]
 }
