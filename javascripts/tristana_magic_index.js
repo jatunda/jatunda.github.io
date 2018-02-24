@@ -19,7 +19,7 @@ function get_d100_effects()
 	// << 0 basically does Math.floor()
 	for(var i = 0; i < 100; i++)
 	{
-		if(k == old_key)
+		if(k == d100_effects.old_key)
 		{
 			k = keys[keys.length * Math.random() << 0]
 		}
