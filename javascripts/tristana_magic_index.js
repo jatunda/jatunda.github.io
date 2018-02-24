@@ -128,7 +128,7 @@ function get_d100_effects()
 			break;
 		}
 	}
-	var output = "Rolled a d" + d100_effects.effects.length + " and got a " +d100_effects.old_key;
+	var output = "Rolled a d" + d100_effects.effects.length + " and got a " +(d100_effects.old_key+1);
 	output += "</p><p>"
 	output += "<em>" + d100_effects.effects[fxNum] + "</em>"
 
