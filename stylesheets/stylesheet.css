@@ -236,8 +236,11 @@ hr {
 table {
   border: 1px solid #373737;
   margin-bottom: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
   text-align: left;
  }
+
 
 th {
   font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -266,7 +269,7 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 640px;
+  max-width: 740px;
   padding: 20px 10px;
   margin: 0 auto;
 }
@@ -402,7 +405,7 @@ Full-Width Styles
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
-    animation: fadeEffect 0.5s; /* Fading effect takes 1 second */
+    /*animation: fadeEffect 0.5s; /* Fading effect */
 }
 
 .tabcontent button {

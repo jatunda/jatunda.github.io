@@ -16,4 +16,30 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
+$(document).keypress(function(event){
+  var c = String.fromCharCode(event.which); 
+  
+  var tabNames = ['About', 'Character Sheet', 'Emotional Magic', 'General Magic']
+
+  var tabName = null
+  if(c == '1' 
+    || c == '2'
+    || c == '3'
+    || c == '4')
+  {
+    tabName = tabNames[parseInt(c)-1]
+  }
+  if(tabName != null)
+  {
+    var tabLinks = document.getElementsByClassName("tablinks");
+    for(let tabLink of tabLinks)
+    {
+        if(tabLink.innerHTML == tabName)
+        {
+            tabLink.click();
+        }
+    }
+    //openTab();
+  }
+});
 
