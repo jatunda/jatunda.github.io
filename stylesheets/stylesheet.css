@@ -405,6 +405,26 @@ Full-Width Styles
     animation: fadeEffect 0.5s; /* Fading effect takes 1 second */
 }
 
+.tabcontent button {
+  background-color: #0072FF;
+  float: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  /*transition: 0.01s;*/
+  color: #FFFFFF;
+  font-size: 30px;
+}
+
+.tabcontent button:hover {
+  background-color: #1E83FF;
+}
+
+.tabcontent button:active {
+  background-color: #0065E3;
+}
+
 
 /* Go from zero to full opacity */
 @keyframes fadeEffect {
