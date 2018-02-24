@@ -1,4 +1,5 @@
 var d100_effects = {
+	'old_key':null
 	'1':"yes",
 	'2':"no",
 	'3':"maybe",
