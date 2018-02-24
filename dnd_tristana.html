@@ -39,6 +39,10 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
 
+        <p>
+          This is a webpage for my Dungeon's and Dragon's Character - a girl who has wild magic she can't control, and gets less stable based on her emotional state.
+        <p>
+
         <!-- tab links -->
         <div class = "tab">
           <button class="tablinks" onclick="openTab(event, 'About')" id="defaultOpen">About</button>
@@ -75,7 +79,7 @@
         </div>
 
         <div id='Character Sheet' class="tabcontent">
-          <h3>Tristana &lt;Last Name&rt;</h3>
+          <h3> Tristana &lt;Last Name&rt; </h3>
           <p>stuff to be added here.</p>
         </div>
 
@@ -139,18 +143,10 @@
 
         <div id='General Magic' class="tabcontent">
           <h3>General Magic<h3>
+          <button type="button" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Roll</button>
+          <p id="roll_answer"></p>
         </div>
 
-        <p>
-          This is a webpage for my Dungeon's and Dragon's Character - a girl who has wild magic she can't control, and gets less stable based on her emotional state.
-        <p>
- 
-        <button type="button"
-        onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">
-          Roll
-        </button>
-
-        <p id="roll_answer"></p>
       </section>
     </div>
 
