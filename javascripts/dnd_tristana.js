@@ -43,3 +43,10 @@ $(document).keypress(function(event){
   }
 });
 
+function add_hp(n)
+{
+    var currHP = parseInt(document.getElementById("hp_display").innerHTML);
+    var newHP = currHP + n;
+    document.getElementById("hp_display").innerHTML = newHP;
+}
+

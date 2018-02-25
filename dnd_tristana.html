@@ -88,30 +88,139 @@
           </div>
 
           <div id='Character Sheet' class="tabcontent">
-            <h3> Tristana &lt;Last Name&gt; </h3>
-            <p>stuff to be added here.</p>
-            <p>
-              <table style="float:left;">
-                <tr>
-                  <th>dank</th>
-                </tr>
-                <tr><td>yes</td></tr>
-              </table>
-              <table style="float:left">
-                <tr>
-                  <th>dank</th>
-                </tr>
-                <tr><td>yes</td></tr>
-              </table>
-              <table style="float:left">
-                <tr>
-                  <th>dank</th>
-                </tr>
-                <tr><td>yes</td></tr>
-              </table>
+            <!--
+            HP: 
+              Heart icon showing curr Hp / max hp
+              plus/minus buttons. When you hit 0, HP turns into Death saving throws. 
+            Hovertext: 
+              Armor: show components (Leather Armor (10) + Dex Modifyer (1) + Shield (2))
+              HP: if Temp HP, show "Temporary HP: x", else: "Total Damage: x"
+            -->
+            <h3> Tristana Lemar, the Unfortunate</h3>
+            <img src="images/vagabond_girl.png" style="float:right;max-width:48%">
+            
+            Level 2 Chaotic Good Human Sorcerer<br>
+            Game Group: Pink EllenDNDale<br>
+            <strong>STR:</strong> 06 (-2)<br>
+            <strong>DEX:</strong> 15 (+2)<br>
+            <strong>CON:</strong> 18 (+4)<br>
+            <strong>INT:</strong> 09 (-1)<br>
+            <strong>WIS:</strong> 08 (-1)<br>
+            <strong>CHR:</strong> 16 (+3)<br>
 
+            Hit Dice: d6<br>
+            HP: 
+            <button type="button" class="inlinebutton" onclick="add_hp(-1)">-</button>
+            <span id="hp_display" style="border:1px solid #ccc;width:30px;display:inline-block;text-align: center;">20</span>
+            <button type="button" class="inlinebutton" onclick="add_hp(1)">+</button>  
+            /20<br>
+            Intiative: +2<br>
+            AC: 13 (11 + Dex)<br>
+            Age: 26 (16 years old + 10 from wild magic)<br>
+            Languages: Common, <em>Abyssal during demonic trance</em><br>
+
+
+
+
+            <p>
+              <table>
+                <tr>
+                  <th>Size</th>
+                  <th>Speed</th>
+                  <th>Sex</th>
+                  <th>Height</th>
+                  <th>Weight</th>
+                </tr>
+                <tr>
+                  <td>Medium</td>
+                  <td>30 ft</td>
+                  <td>&#x2640;</td>
+                  <td>5' 7"</td>
+                  <td>110 lbs</td>
+                </tr>
+              </table>
             </p>
-            <p style="clear:both">yes</p>
+
+            <h4>Weapons/Attacks:</h4>
+            Dagger - Father's Memento (Intricate carved handle)
+            <ul>
+              <li>+4 hit; 1d4+2 dmg</li>
+            </ul>
+            Shortbow - Self made (+inf arrows)
+            <ul>
+              <li>+4 hit; 1d6+2 dmg</li>
+            </ul>
+            Panic Fire - Can only be used when emotionally distressed
+            <ul>
+              <li>Cantrip; DC 13; 1d8+3 dmg; No effect on successful save;</li>
+            </ul>
+
+
+
+
+
+            <h4>Noteworthy Items:</h4>
+            Sexy Sexy Catsuit
+            <ul>
+              <li>+4 to stealth rolls. Must end every sentence with <em>"nya~"</em>.</li>
+            </ul>
+            Clarinet of Truth
+            <ul>
+              <li>Blow at a creature to force them to speak their deepest, darkest secret.</li>
+            </ul>
+
+
+
+            <h4>Proficiencies:</h4>
+
+            <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 10px 10px;"><h5>Melee Weapons:</h5>
+              <ul>
+                <li>Clubs</li>
+                <li>Daggers</li>
+                <li>Handaxes</li>
+                <li>Light Hammer</li>
+                <li>Mace</li>
+                <li>Shortsword</li>
+              </ul>
+            </div>
+
+            <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 10px 10px;"><h5>Ranged Weapons:</h5>
+              <ul>
+                <li>Darts</li>
+                <li>Slings</li>
+                <li>Light Crossbows</li>
+                <li>Heavey Crossbows</li>
+                <li>Shortbow</li>
+                <li>Longbow</li>
+                <li>Net</li>
+              </ul>
+            </div>
+            <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 10px 10px;"><h5>Tools:</h5>
+              <ul>
+                <li>Wood Carving Tools</li>
+                <li>Animal Traps</li>
+              </ul>
+            </div>
+            <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 10px 10px;"><h5>Armor:</h5>
+              <ul>
+                <li>Light</li>
+              </ul>
+            </div>
+
+
+
+            <h4 style="clear:both;">Skills:</h4>
+            Constitution Saving Throw (+6)<br>
+            Charisma Saving Throw (+5)<br>
+            Nature (+2)<br>
+            Stealth (+4) (+8 with sexy cat suit)<br>
+            Survival (+2)<br>
+            Eating Bad Food (+6)<br>
+            Whittling (+4)<br>
+
+            <h4>Magic:</h4>
+            Save DC: 13<br>
+            Spell Hit Modifier: +5<br>
           </div>
 
           <div id='Emotional Magic' class="tabcontent">
@@ -121,7 +230,7 @@
 
 
             <p>These are guidelines for example reactions.</p>
-            
+
             <h4>Highly emotional moments (examples):</h4>
             <ul>
               <li> 
@@ -201,8 +310,8 @@
               </strong>
             </p>
             <div style="text-align:center;">
-              <button type="button" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Roll</button>
-              <p id="roll_answer">Click Roll</p>
+              <button type="button" style="border-radius: 4px" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Roll</button>
+              <p id="roll_answer">Click button to roll<br><em>~Magic~</em></p>
             </div>
           </div>
 
