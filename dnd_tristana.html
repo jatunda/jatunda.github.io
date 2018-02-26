@@ -141,7 +141,7 @@
               </table>
             </p>
 
-            <h4>Weapons/Attacks:</h4>
+            <h4>Weapons/Attacks/Actions:</h4>
             Dagger - Father's Memento (Intricate carved handle)
             <ul>
               <li>+4 hit; 1d4+2 dmg</li>
@@ -152,8 +152,18 @@
             </ul>
             Panic Fire - Can only be used when emotionally distressed
             <ul>
-              <li>Cantrip; DC 13; 1d8+3 dmg; No effect on successful save;</li>
+              <li>Cantrip: Hit:+5; 1d8+3(CHR) dmg; No effect on successful save;</li>
             </ul>
+            Panic Fire 2 - Only used when overwhelmed (multiple enemies, or 1 enemy in 5ft threatening Tristana)
+            <ul>
+              <li>Lvl 1 Spell: 2d6 + 1d6 per mp + 3(CHR). 15 ft cone.</li>
+            </ul>
+            Cure Wounds - Tears cure wounds
+            <ul>
+              <li>Lvl 1 Spell: 1d8 per mp + 3(CHR). Must be fresh tears, and Tristana must want to heal.</li>
+            </ul>
+
+
 
 
 
@@ -221,6 +231,53 @@
             <h4>Magic:</h4>
             Save DC: 13<br>
             Spell Hit Modifier: +5<br>
+
+            <h5>Emotional Spells:</h5>
+            
+            Fire Bolt (Cantrip)<br>
+            Burning Hands (lvl 1)<br>
+            Fireball (lvl 3)<br>
+            Wall of Fire (lvl 4)<br>
+            Flame Strike (lvl 5)<br>
+            Fire storm (lvl 7) (50 ft sphere centered on self)<br>
+            Meteor Swarm (lvl 9)(100 ft sphere centered on self)<br>
+            <br>
+
+            Cure Wounds (lvl 1)<br>
+            Heal<br>
+            Regenerate<br>
+            <br>
+
+            Revivify<br>
+            Ressurection<br>
+            <br>
+            
+            ThunderWave<br>
+            Shatter <br>
+            <br>
+            
+            Misty Step (Teleportation, can do multiple)<br>
+            Blink<br>
+            Darkness<br>
+            Teleportation<br>
+            Invisibility<br>
+            Etherealness<br>
+            <br>
+            
+            Globe of Invulnerability<br>
+            <br>
+            
+            Feather Fall<br>
+            Water Breathing<br>
+            Expeditious Retreat<br>
+            <br>
+
+            
+            Hold Person<br>
+            Circle of Death (Centered on self)<br>
+            <br>
+
+            Wish<br>
           </div>
 
           <div id='Emotional Magic' class="tabcontent">
@@ -301,6 +358,7 @@
 
           </div>
 
+          <!-- BEGIN GENERAL MAGIC TAB -->
           <div id='General Magic' class="tabcontent">
             <h3>General Magic</h3>
             <p>
@@ -309,12 +367,60 @@
                 use the <em>Emotional Magic</em> section instead of this section.
               </strong>
             </p>
-            <div style="text-align:center;">
-              <button type="button" style="border-radius: 4px" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Roll</button>
-              <p id="roll_answer">Click button to roll<br><em>~Magic~</em></p>
-            </div>
-          </div>
 
+            <div>
+              <h4>Emotional Stability</h4>
+              <p>
+                Base: 10 - proficiency<br>
+                Range: 1 to 15 <br>
+
+                Increase up to 15 based on emotional stress. 1 = Peaceful as the Buddha<br>
+                (Greater than 15, please refer to emotional magic tab)<br>
+                <strong>Success:</strong> Intentional Wild Magic<br>
+                <strong>Failure:</strong> Uncontrolled Wild Magic<br>
+              </p>
+              <div style="text-align:center;">
+                <p>
+                  <!--<div style="width:50%;float:left;">
+                    <button type="button" style="border-radius: 4px;top:50%;left:50%;" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Normal Magic</button>
+                  </div>
+                  <div style="width:50%;float:left;">
+                    <button type="button" style="border-radius: 4px;top:50%;left:50%;" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Wild Magic</button>
+                  </div>-->
+                  <button type="button" style="border-radius: 4px;top:50%;left:50%;" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Wild Magic</button>
+
+                </p>
+                <p id="roll_answer" style="clear:both;">Click a button to roll<br><em>~Magic~</em></p>
+              </div>
+              <h5>Intentional Wild Magic</h5>
+              <p>
+                Intent: Tristana’s magic should always be slightly uncontrolled, 
+                but when she’s emotionally stable, she can get roughly what she wants. 
+              </p>
+              Categories:
+              <ul>
+                <li>Magic Attack</li>
+                <li>Healing</li>
+                <li>Resurrection</li>
+                <li>Escape</li>
+                <li>Hiding</li>
+                <li>Life Threatening</li>
+                <li>Expel Threat</li>
+              </ul>
+              <h5>Uncontrolled Wild Magic</h5>
+              <p>
+                Intent: Everyday magic casting that just fucks up sometimes. 
+                The most random, gimmicky portion of wild magic (a bit of randomness 
+                to lead to some unexpected fun situations).
+              </p>
+
+
+
+            </div>
+
+
+          </div>
+          <!-- END GENERAL MAGIC TAB -->
         </section>
       </div>
 
@@ -323,6 +429,7 @@
         <footer class="inner">
           <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
           <p>Version 002</p>
+          <p>Copyright 2018 Jatunda</p>
         </footer>
       </div>
 
