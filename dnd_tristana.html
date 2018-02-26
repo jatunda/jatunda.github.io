@@ -8,6 +8,7 @@
 
   <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
   <title>Tristana Lemar</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" src="favicon.ico">
 </head>
 
 <nav>
@@ -27,11 +28,8 @@
   <!-- HEADER -->
   <div id="header_wrap" class="outer">
     <header class="inner">
-
       <h1 id="project_title">Tristana's Wild Magic</h1>
       <h2 id="project_tagline">An attempt to make magic come alive</h2>
-
-
     </header>
   </div>
 
@@ -40,401 +38,379 @@
     <section id="main_content" class="inner">
 
       <p>
-        This is a webpage for my Dungeon's and Dragon's Character - a girl who has wild magic she can't control, and gets less stable based on her emotional state.
+        This is a webpage for my Dungeon's and Dragon's Character - 
+        a girl who has wild magic she can't control, 
+        and gets less stable based on her emotional state.
+      </p>
+
+      <!-- tab links -->
+      <div class = "tab">
+        <button class="tablinks" onclick="openTab(event, 'About')" id="defaultOpen">About</button>
+        <button class="tablinks" onclick="openTab(event, 'Character Sheet')">Character Sheet</button>
+        <button class="tablinks" onclick="openTab(event, 'Emotional Magic')">Emotional Magic</button>
+        <button class="tablinks" onclick="openTab(event, 'General Magic')">General Magic</button>
+      </div>
+
+
+      <div id='About' class="tabcontent">
+
+        <h3>Introduction</h3>
         <p>
+          This system was created to make the game more interesting, 
+          and to help the DM guide the story, the player characters, 
+          and Tristana’s personal character development. The system serves the story, 
+          not the other way around. Feel free to fudge anything here to enrich the DnD 
+          experience. At its core, this webpage is a collection of guidelines to help you 
+          better understand and curate Tristana’s emotional and magical journey.
+        </p>
 
-          <!-- tab links -->
-          <div class = "tab">
-            <button class="tablinks" onclick="openTab(event, 'About')" id="defaultOpen">About</button>
-            <button class="tablinks" onclick="openTab(event, 'Character Sheet')">Character Sheet</button>
-            <button class="tablinks" onclick="openTab(event, 'Emotional Magic')">Emotional Magic</button>
-            <button class="tablinks" onclick="openTab(event, 'General Magic')">General Magic</button>
-          </div>
+        <h3>Who is Tristana?</h3>
+        <ul>
+          <li>Sentimental</li>
+          <li>Emotional</li>
+          <li>Fearful</li>
+          <li>Oblivious</li>
+          <li>Mom died during childbirth, and passed a curse on to Tristana</li>
+          <li>Left the civilized world at age 8</li>
+          <li>Grew up in the wild</li>
+          <li>Developing Sense of Morality</li>
+          <li>She's really just a normal girl with unfortunate circumstances. </li>
+        </ul>
+
+        <h3>Tristana's Relationship with Magic</h3>
+        <ol>
+          <li>Tristana is afraid of her own magic – at a young age, she accidently killed her family.</li>
+          <li>Tristana’s magic is the physical manifestation of her emotions. In moments of strong resolve, anger, fear, etc. Tristana <strong>will</strong> cast magic that is emotionally appropriate, even if she doesn’t want to.</li>
+          <li>She is deathly afraid of her magic, but she isn’t <em>bad</em> at it. Her magic is destabilized by her fear and lack of practice. </li>
+        </ol>
+      </div>
+      <!-- END ABOUT TAB -->
+
+      <div id='Character Sheet' class="tabcontent">
+        <!--
+        HP: 
+          Heart icon showing curr Hp / max hp
+          plus/minus buttons. When you hit 0, HP turns into Death saving throws. 
+        Hovertext: 
+          Armor: show components (Leather Armor (10) + Dex Modifyer (1) + Shield (2))
+          HP: if Temp HP, show "Temporary HP: x", else: "Total Damage: x"
+        -->
+        <h3> Tristana Lemar, the Unfortunate</h3>
+        <img src="images/Vagabond_Girl.png" style="float:right;max-width:48%">
+        <p>
+          Level 2 Chaotic Good Human Sorcerer<br>
+          Game Group: Pink EllenDNDale<br>
+          <strong>STR:</strong> 06 (-2)<br>
+          <strong>DEX:</strong> 15 (+2)<br>
+          <strong>CON:</strong> 18 (+4)<br>
+          <strong>INT:</strong> 09 (-1)<br>
+          <strong>WIS:</strong> 08 (-1)<br>
+          <strong>CHR:</strong> 16 (+3)<br>
+  
+          Hit Dice: d6<br>
+          HP: 
+          <button type="button" class="inlinebutton" onclick="add_hp(-1)">-</button>
+          <span id="hp_display" style="border:1px solid #ccc;width:30px;display:inline-block;text-align: center;">20</span>
+          <button type="button" class="inlinebutton" onclick="add_hp(1)">+</button>  
+          /20<br>
+          Intiative: +2<br>
+          AC: 13 (11 + Dex)<br>
+          Age: 26 (16 years old + 10 from wild magic)<br>
+          Languages: Common, <em>Abyssal during demonic trance</em><br>
+        </p>
 
 
 
-          <div id='About' class="tabcontent">
+        <p>
+          <table>
+            <tr>
+              <th>Size</th>
+              <th>Speed</th>
+              <th>Sex</th>
+              <th>Height</th>
+              <th>Weight</th>
+            </tr>
+            <tr>
+              <td>Medium</td>
+              <td>30 ft</td>
+              <td>&#x2640;</td>
+              <td>5' 7"</td>
+              <td>110 lbs</td>
+            </tr>
+          </table>
+        </p>
+
+        <h4>Weapons/Attacks/Actions:</h4>
+        Dagger - Father's Memento (Intricate carved handle)
+        <ul>
+          <li>+4 hit; 1d4+2 dmg</li>
+        </ul>
+        Shortbow - Self made (+inf arrows)
+        <ul>
+          <li>+4 hit; 1d6+2 dmg</li>
+        </ul>
+        Panic Fire - Can only be used when emotionally distressed
+        <ul>
+          <li>Cantrip: Hit:+5; 1d8+3(CHR) dmg; No effect on successful save;</li>
+        </ul>
+        Panic Fire 2 - Only used when overwhelmed (multiple enemies, or 1 enemy in 5ft threatening Tristana)
+        <ul>
+          <li>Lvl 1 Spell: 2d6 + 1d6 per mp + 3(CHR). 15 ft cone.</li>
+        </ul>
+        Cure Wounds - Tears cure wounds
+        <ul>
+          <li>Lvl 1 Spell: 1d8 per mp + 3(CHR). Must be fresh tears, and Tristana must want to heal.</li>
+        </ul>
+
+        <h4>Noteworthy Items:</h4>
+        Sexy Sexy Catsuit
+        <ul>
+          <li>+4 to stealth rolls. Must end every sentence with <em>"nya~"</em>.</li>
+        </ul>
+        Clarinet of Truth
+        <ul>
+          <li>Blow at a creature to force them to speak their deepest, darkest secret.</li>
+        </ul>
+
+        <h4>Proficiencies:</h4>
+
+        <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Melee Weapons:</h5>
+          <ul>
+            <li>Club</li>
+            <li>Dagger</li>
+            <li>Handaxe</li>
+            <li>Light Hammer</li>
+            <li>Mace</li>
+            <li>Shortsword</li>
+          </ul>
+        </div>
+
+        <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Ranged Weapons:</h5>
+          <ul>
+            <!-- <li>Darts</li> -->
+            <li>Sling</li>
+            <li>Light Crossbow</li>
+            <li>Heavy Crossbow</li>
+            <li>Shortbow</li>
+            <li>Longbow</li>
+            <li>Net</li>
+          </ul>
+        </div>
+        <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Tools:</h5>
+          <ul>
+            <li>Wood Carving Tool</li>
+            <li>Animal Trap</li>
+          </ul>
+        </div>
+        <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Armor:</h5>
+          <ul>
+            <li>Light</li>
+          </ul>
+        </div>
+
+        <h4 style="clear:both;"><br>Skills:</h4>
+        Constitution Saving Throw (+6)<br>
+        Charisma Saving Throw (+5)<br>
+        Nature (+2)<br>
+        Stealth (+4) (+8 with sexy cat suit)<br>
+        Survival (+2)<br>
+        Eating Bad Food (+6)<br>
+        Whittling (+4)<br>
+
+        <h4>Magic:</h4>
+        Save DC: 13<br>
+        Spell Hit Modifier: +5<br>
+
+        <h5>Emotional Spells:</h5>
+
+        Fire Bolt (Cantrip)<br>
+        Burning Hands (lvl 1)<br>
+        Fireball (lvl 3)<br>
+        Wall of Fire (lvl 4)<br>
+        Flame Strike (lvl 5)<br>
+        Fire storm (lvl 7) (50 ft sphere centered on self)<br>
+        Meteor Swarm (lvl 9)(100 ft sphere centered on self)<br>
+        <br>
+
+        Cure Wounds (lvl 1)<br>
+        Heal<br>
+        Regenerate<br>
+        <br>
+
+        Revivify<br>
+        Ressurection<br>
+        <br>
+
+        ThunderWave<br>
+        Shatter <br>
+        <br>
+
+        Misty Step (Teleportation, can do multiple)<br>
+        Blink<br>
+        Darkness<br>
+        Teleportation<br>
+        Invisibility<br>
+        Etherealness<br>
+        <br>
+
+        Globe of Invulnerability<br>
+        <br>
+
+        Feather Fall<br>
+        Water Breathing<br>
+        Expeditious Retreat<br>
+        <br>
 
 
-            <h3>Introduction</h3>
+        Hold Person<br>
+        Circle of Death (Centered on self)<br>
+        <br>
+
+        Wish<br>
+      </div>
+      <!-- END CHARACTER SHEET TAB -->
+
+
+      <div id='Emotional Magic' class="tabcontent">
+        <h3>Emotional Magic Guidelines</h3>
+        <p><strong>If Tristana is ever at all emotional, or wants something strongly, use this section instead of the general wild magic section</strong></p>
+        <p>Whenever Tristana has a strong emotional reaction. She casts magic</p>
+        <p>These are guidelines for example reactions.</p>
+        <h4>Highly emotional moments (examples):</h4>
+        <ul>
+          <li>Coming home and realizing her best friend was assassinated: 
+            <ul>
+              <li>Despair – darkness. Black hole (suck in).</li> 
+              <li>Stamina drain to those around her. </li>
+              <li>Crying like crazy</li>
+            </ul>
+          </li>
+          <li>Watching the Big Bad kill her best friend in front of her:
+            <ul>
+              <li>Anger – flame aura.</li>
+              <li>All damaging spells cast become fire element.</li>
+              <li>Extended reach/power of spells, but only targets the Big Bad.</li>
+            </ul> 
+          </li>
+          <li>Watching her best friend getting shot in the stomach and bleed out: 
+            <ul>
+              <li>Healing tears</li>
+            </ul> 
+          </li>
+
+          <li>Party falling down a pitfall to their death:
+            <ul>
+              <li>Panic – featherfall (or antigravity) on everyone</li>
+            </ul>
+          </li>
+          <li>Being level 1, and seeing a lv20 dragon:
+            <ul>
+              <li>Fear – cast invisible on everyone (including dragon)</li>
+              <li>Or randomly teleport party to random hiding spots around dragon.</li> 
+              <li>Or cast petrify on self.</li>
+            </ul>
+          </li> 
+        </ul>
+
+        <h4>Example Responses Based on Emotion:</h4>
+        <table style="width:100%">
+          <tr><th>Emotion</th><th>Example Effect</th></tr>
+          <tr><td>Anger</td><td> Heat/Fire (Radiates), Shout => sonic boom, swing hand => force push</td></tr>
+          <tr><td>Sadness/Loss</td><td> Darkness (Radiates), Gravity (AoE)</td></tr>
+          <tr><td>Despair</td><td> some sort of black hole magic</td></tr>
+          <tr><td>Fear of Pain (Fight)</td><td> Magic Missiles randomly  </td></tr>
+          <tr><td>Fear of Scary (Flight)</td><td> Darkness (cloud) </td></tr>
+          <tr><td>Joy</td><td> Glow (Radiates) </td></tr>
+          <tr><td>Groggy Mornings</td><td> Slow (Radiates)</td></tr>
+          <tr><td>Adrenaline (Fights)</td><td> Attacks with force magic along with swings</td></tr>
+          <tr><td>Comradery</td><td> Casts Shield on allies</td></tr>
+          <tr><td>Envy</td><td> Decay (on object of envy) or General weakness (on a person)</td></tr>
+          <tr><td>Paranoia/Anxiety</td><td> Cast Tinnitus on everyone in range. Severe = cast Migraine instead </td></tr>
+          <tr><td>Embarrassment (to praise)</td><td> Pink bubbles out of ears</td></tr>
+          <tr><td>Strong Hope/Faith</td><td> Super buff allies and self</td></tr>
+          <tr><td>Frustration</td><td> All sides gravity on object of frustration (crush into ball)</td></tr>
+          <tr><td>Pride &amp; Righteousness</td><td> other magic is stronger</td></tr>
+          <tr><td>Cruelty</td><td> drain hp</td></tr>
+          <tr><td>Love (Romantic)</td><td> Some sort of boost on the person loved + temp HP + heal?</td></tr>
+          <tr><td>Hate</td><td> necrotic damage. Black fire?</td></tr>
+          <tr><td>Shame</td><td> invisible or cast weakening spells on self</td></tr>
+        </table>
+      </div>
+      <!-- END EMOTIONAL MAGIC TAB -->
+
+      <!-- BEGIN GENERAL MAGIC TAB -->
+      <div id='General Magic' class="tabcontent">
+        <h3>General Magic</h3>
+        <p>
+          <strong>
+            If Tristana is ever at all emotional, or wants something strongly, 
+            use the <em>Emotional Magic</em> section instead of this section.
+          </strong>
+        </p>
+
+        <div>
+          <h4>Emotional Stability</h4>
+          <p>
+            Base: 10 - proficiency<br>
+            Range: 1 to 15 <br>
+
+            Increase up to 15 based on emotional stress. 1 = Peaceful as the Buddha<br>
+            (Greater than 15, please refer to emotional magic tab)<br>
+            <strong>Success:</strong> Intentional Wild Magic<br>
+            <strong>Failure:</strong> Uncontrolled Wild Magic<br>
+          </p>
+          <div style="text-align:center;">
             <p>
-              This system was created to make the game more interesting, 
-              and to help the DM guide the story, the player characters, 
-              and Tristana’s personal character development. The system serves the story, 
-              not the other way around. Feel free to fudge anything here to enrich the DnD 
-              experience. At its core, this webpage is a collection of guidelines to help you 
-              better understand and curate Tristana’s emotional and magical journey.
-            </p>
-
-            <h3>Who is Tristana?</h3>
-            <ul>
-              <li>Sentimental</li>
-              <li>Emotional</li>
-              <li>Fearful</li>
-              <li>Oblivious</li>
-              <li>Mom died during childbirth, and passed a curse on to Tristana</li>
-              <li>Left the civilized world at age 8</li>
-              <li>Grew up in the wild</li>
-              <li>Developing Sense of Morality</li>
-              <li>She's really just a normal girl with unfortunate circumstances. </li>
-            </ul>
-
-            <h3>Tristana's Relationship with Magic</h3>
-            <ol>
-              <li>Tristana is afraid of her own magic – at a young age, she accidently killed her family.</li>
-              <li>Tristana’s magic is the physical manifestation of her emotions. In moments of strong resolve, anger, fear, etc. Tristana <strong>will</strong> cast magic that is emotionally appropriate, even if she doesn’t want to.</li>
-              <li>She is deathly afraid of her magic, but she isn’t <em>bad</em> at it. Her magic is destabilized by her fear and lack of practice. </li>
-            </ol>
-          </div>
-
-          <div id='Character Sheet' class="tabcontent">
-            <!--
-            HP: 
-              Heart icon showing curr Hp / max hp
-              plus/minus buttons. When you hit 0, HP turns into Death saving throws. 
-            Hovertext: 
-              Armor: show components (Leather Armor (10) + Dex Modifyer (1) + Shield (2))
-              HP: if Temp HP, show "Temporary HP: x", else: "Total Damage: x"
-            -->
-            <h3> Tristana Lemar, the Unfortunate</h3>
-            <img src="images/Vagabond_Girl.png" style="float:right;max-width:48%">
-            
-            Level 2 Chaotic Good Human Sorcerer<br>
-            Game Group: Pink EllenDNDale<br>
-            <strong>STR:</strong> 06 (-2)<br>
-            <strong>DEX:</strong> 15 (+2)<br>
-            <strong>CON:</strong> 18 (+4)<br>
-            <strong>INT:</strong> 09 (-1)<br>
-            <strong>WIS:</strong> 08 (-1)<br>
-            <strong>CHR:</strong> 16 (+3)<br>
-
-            Hit Dice: d6<br>
-            HP: 
-            <button type="button" class="inlinebutton" onclick="add_hp(-1)">-</button>
-            <span id="hp_display" style="border:1px solid #ccc;width:30px;display:inline-block;text-align: center;">20</span>
-            <button type="button" class="inlinebutton" onclick="add_hp(1)">+</button>  
-            /20<br>
-            Intiative: +2<br>
-            AC: 13 (11 + Dex)<br>
-            Age: 26 (16 years old + 10 from wild magic)<br>
-            Languages: Common, <em>Abyssal during demonic trance</em><br>
-
-
-
-
-            <p>
-              <table>
-                <tr>
-                  <th>Size</th>
-                  <th>Speed</th>
-                  <th>Sex</th>
-                  <th>Height</th>
-                  <th>Weight</th>
-                </tr>
-                <tr>
-                  <td>Medium</td>
-                  <td>30 ft</td>
-                  <td>&#x2640;</td>
-                  <td>5' 7"</td>
-                  <td>110 lbs</td>
-                </tr>
-              </table>
-            </p>
-
-            <h4>Weapons/Attacks/Actions:</h4>
-            Dagger - Father's Memento (Intricate carved handle)
-            <ul>
-              <li>+4 hit; 1d4+2 dmg</li>
-            </ul>
-            Shortbow - Self made (+inf arrows)
-            <ul>
-              <li>+4 hit; 1d6+2 dmg</li>
-            </ul>
-            Panic Fire - Can only be used when emotionally distressed
-            <ul>
-              <li>Cantrip: Hit:+5; 1d8+3(CHR) dmg; No effect on successful save;</li>
-            </ul>
-            Panic Fire 2 - Only used when overwhelmed (multiple enemies, or 1 enemy in 5ft threatening Tristana)
-            <ul>
-              <li>Lvl 1 Spell: 2d6 + 1d6 per mp + 3(CHR). 15 ft cone.</li>
-            </ul>
-            Cure Wounds - Tears cure wounds
-            <ul>
-              <li>Lvl 1 Spell: 1d8 per mp + 3(CHR). Must be fresh tears, and Tristana must want to heal.</li>
-            </ul>
-
-
-
-
-
-
-
-            <h4>Noteworthy Items:</h4>
-            Sexy Sexy Catsuit
-            <ul>
-              <li>+4 to stealth rolls. Must end every sentence with <em>"nya~"</em>.</li>
-            </ul>
-            Clarinet of Truth
-            <ul>
-              <li>Blow at a creature to force them to speak their deepest, darkest secret.</li>
-            </ul>
-
-
-
-            <h4>Proficiencies:</h4>
-
-            <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Melee Weapons:</h5>
-              <ul>
-                <li>Club</li>
-                <li>Dagger</li>
-                <li>Handaxe</li>
-                <li>Light Hammer</li>
-                <li>Mace</li>
-                <li>Shortsword</li>
-              </ul>
-            </div>
-
-            <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Ranged Weapons:</h5>
-              <ul>
-                <!-- <li>Darts</li> -->
-                <li>Sling</li>
-                <li>Light Crossbow</li>
-                <li>Heavy Crossbow</li>
-                <li>Shortbow</li>
-                <li>Longbow</li>
-                <li>Net</li>
-              </ul>
-            </div>
-            <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Tools:</h5>
-              <ul>
-                <li>Wood Carving Tool</li>
-                <li>Animal Trap</li>
-              </ul>
-            </div>
-            <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Armor:</h5>
-              <ul>
-                <li>Light</li>
-              </ul>
-            </div>
-
-
-
-            <h4 style="clear:both;"><br>Skills:</h4>
-            Constitution Saving Throw (+6)<br>
-            Charisma Saving Throw (+5)<br>
-            Nature (+2)<br>
-            Stealth (+4) (+8 with sexy cat suit)<br>
-            Survival (+2)<br>
-            Eating Bad Food (+6)<br>
-            Whittling (+4)<br>
-
-            <h4>Magic:</h4>
-            Save DC: 13<br>
-            Spell Hit Modifier: +5<br>
-
-            <h5>Emotional Spells:</h5>
-            
-            Fire Bolt (Cantrip)<br>
-            Burning Hands (lvl 1)<br>
-            Fireball (lvl 3)<br>
-            Wall of Fire (lvl 4)<br>
-            Flame Strike (lvl 5)<br>
-            Fire storm (lvl 7) (50 ft sphere centered on self)<br>
-            Meteor Swarm (lvl 9)(100 ft sphere centered on self)<br>
-            <br>
-
-            Cure Wounds (lvl 1)<br>
-            Heal<br>
-            Regenerate<br>
-            <br>
-
-            Revivify<br>
-            Ressurection<br>
-            <br>
-            
-            ThunderWave<br>
-            Shatter <br>
-            <br>
-            
-            Misty Step (Teleportation, can do multiple)<br>
-            Blink<br>
-            Darkness<br>
-            Teleportation<br>
-            Invisibility<br>
-            Etherealness<br>
-            <br>
-            
-            Globe of Invulnerability<br>
-            <br>
-            
-            Feather Fall<br>
-            Water Breathing<br>
-            Expeditious Retreat<br>
-            <br>
-
-            
-            Hold Person<br>
-            Circle of Death (Centered on self)<br>
-            <br>
-
-            Wish<br>
-          </div>
-
-          <div id='Emotional Magic' class="tabcontent">
-            <h3>Emotional Magic Guidelines</h3>
-            <p><strong>If Tristana is ever at all emotional, or wants something strongly, use this section instead of the general wild magic section</strong></p>
-            <p>Whenever Tristana has a strong emotional reaction. She casts magic</p>
-
-
-            <p>These are guidelines for example reactions.</p>
-
-            <h4>Highly emotional moments (examples):</h4>
-            <ul>
-              <li> 
-                Coming home and realizing her best friend was assassinated: 
-                <ul>
-                  <li>Despair – darkness. Black hole (suck in).</li> 
-                  <li>Stamina drain to those around her. </li>
-                  <li>Crying like crazy</li>
-                </ul>
-              </li>
-              <li>
-                Watching the Big Bad kill her best friend in front of her:
-                <ul>
-                  <li>Anger – flame aura.</li>
-                  <li>All damaging spells cast become fire element.</li>
-                  <li>Extended reach/power of spells, but only targets the Big Bad.</li>
-                </ul> 
-              </li>
-
-              <li>Watching her best friend getting shot in the stomach and bleed out: 
-                <ul>
-                  <li>Healing tears</li>
-                </ul> 
-              </li>
-
-              <li>Party falling down a pitfall to their death:
-                <ul>
-                  <li>Panic – featherfall (or antigravity) on everyone</li>
-                </ul>
-              </li>
-              <li>
-                Being level 1, and seeing a lv20 dragon:
-                <ul>
-                  <li>Fear – cast invisible on everyone (including dragon)</li>
-                  <li>Or randomly teleport party to random hiding spots around dragon.</li> 
-                  <li>Or cast petrify on self.</li>
-                </ul>
-              </li> 
-            </ul>
-
-            <h4>Example Responses Based on Emotion:</h4>
-
-            <table style="width:100%">
-              <tr><th>Emotion</th><th>Example Effect</th></tr>
-              <tr><td>Anger</td><td> Heat/Fire (Radiates), Shout => sonic boom, swing hand => force push</td></tr>
-              <tr><td>Sadness/Loss</td><td> Darkness (Radiates), Gravity (AoE)</td></tr>
-              <tr><td>Despair</td><td> some sort of black hole magic</td></tr>
-              <tr><td>Fear of Pain (Fight)</td><td> Magic Missiles randomly  </td></tr>
-              <tr><td>Fear of Scary (Flight)</td><td> Darkness (cloud) </td></tr>
-              <tr><td>Joy</td><td> Glow (Radiates) </td></tr>
-              <tr><td>Groggy Mornings</td><td> Slow (Radiates)</td></tr>
-              <tr><td>Adrenaline (Fights)</td><td> Attacks with force magic along with swings</td></tr>
-              <tr><td>Comradery</td><td> Casts Shield on allies</td></tr>
-              <tr><td>Envy</td><td> Decay (on object of envy) or General weakness (on a person)</td></tr>
-              <tr><td>Paranoia/Anxiety</td><td> Cast Tinnitus on everyone in range. Severe = cast Migraine instead </td></tr>
-              <tr><td>Embarrassment (to praise)</td><td> Pink bubbles out of ears</td></tr>
-              <tr><td>Strong Hope/Faith</td><td> Super buff allies and self</td></tr>
-              <tr><td>Frustration</td><td> All sides gravity on object of frustration (crush into ball)</td></tr>
-              <tr><td>Pride &amp; Righteousness</td><td> other magic is stronger</td></tr>
-              <tr><td>Cruelty</td><td> drain hp</td></tr>
-              <tr><td>Love (Romantic)</td><td> Some sort of boost on the person loved + temp HP + heal?</td></tr>
-              <tr><td>Hate</td><td> necrotic damage. Black fire?</td></tr>
-              <tr><td>Shame</td><td> invisible or cast weakening spells on self</td></tr>
-            </table>
-
-
-
-
-          </div>
-
-          <!-- BEGIN GENERAL MAGIC TAB -->
-          <div id='General Magic' class="tabcontent">
-            <h3>General Magic</h3>
-            <p>
-              <strong>
-                If Tristana is ever at all emotional, or wants something strongly, 
-                use the <em>Emotional Magic</em> section instead of this section.
-              </strong>
-            </p>
-
-            <div>
-              <h4>Emotional Stability</h4>
-              <p>
-                Base: 10 - proficiency<br>
-                Range: 1 to 15 <br>
-
-                Increase up to 15 based on emotional stress. 1 = Peaceful as the Buddha<br>
-                (Greater than 15, please refer to emotional magic tab)<br>
-                <strong>Success:</strong> Intentional Wild Magic<br>
-                <strong>Failure:</strong> Uncontrolled Wild Magic<br>
-              </p>
-              <div style="text-align:center;">
-                <p>
-                  <!--<div style="width:50%;float:left;">
-                    <button type="button" style="border-radius: 4px;top:50%;left:50%;" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Normal Magic</button>
-                  </div>
-                  <div style="width:50%;float:left;">
-                    <button type="button" style="border-radius: 4px;top:50%;left:50%;" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Wild Magic</button>
-                  </div>-->
-                  <button type="button" style="border-radius: 4px;top:50%;left:50%;" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Wild Magic</button>
-
-                </p>
-                <p id="roll_answer" style="clear:both;">Click a button to roll<br><em>~Magic~</em></p>
+              <!--<div style="width:50%;float:left;">
+                <button type="button" style="border-radius: 4px;top:50%;left:50%;" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Normal Magic</button>
               </div>
-              <h5>Intentional Wild Magic</h5>
-              <p>
-                Intent: Tristana’s magic should always be slightly uncontrolled, 
-                but when she’s emotionally stable, she can get roughly what she wants. 
-              </p>
-              Categories:
-              <ul>
-                <li>Magic Attack</li>
-                <li>Healing</li>
-                <li>Resurrection</li>
-                <li>Escape</li>
-                <li>Hiding</li>
-                <li>Life Threatening</li>
-                <li>Expel Threat</li>
-              </ul>
-              <h5>Uncontrolled Wild Magic</h5>
-              <p>
-                Intent: Everyday magic casting that just fucks up sometimes. 
-                The most random, gimmicky portion of wild magic (a bit of randomness 
-                to lead to some unexpected fun situations).
-              </p>
-
-
-
-            </div>
-
-
+              <div style="width:50%;float:left;">
+                <button type="button" style="border-radius: 4px;top:50%;left:50%;" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Wild Magic</button>
+              </div>-->
+              <button type="button" style="border-radius: 4px;top:50%;left:50%;" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Wild Magic</button>
+            </p>
+            <p id="roll_answer" style="clear:both;">Click a button to roll<br><em>~Magic~</em></p>
           </div>
-          <!-- END GENERAL MAGIC TAB -->
-        </section>
+          <h5>Intentional Wild Magic</h5>
+          <p>
+            Intent: Tristana’s magic should always be slightly uncontrolled, 
+            but when she’s emotionally stable, she can get roughly what she wants. 
+          </p>
+          Categories:
+          <ul>
+            <li>Magic Attack</li>
+            <li>Healing</li>
+            <li>Resurrection</li>
+            <li>Escape</li>
+            <li>Hiding</li>
+            <li>Life Threatening</li>
+            <li>Expel Threat</li>
+          </ul>
+          <h5>Uncontrolled Wild Magic</h5>
+          <p>
+            Intent: Everyday magic casting that just fucks up sometimes. 
+            The most random, gimmicky portion of wild magic (a bit of randomness 
+            to lead to some unexpected fun situations).
+          </p>
+        </div>
       </div>
+      <!-- END GENERAL MAGIC TAB -->  
+    </section>
+  </div>
+  <!-- END MAIN CONTENT -->
 
-      <!-- FOOTER  -->
-      <div id="footer_wrap" class="outer">
-        <footer class="inner">
-          <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-          <p>Version 002</p>
-          <p>Copyright 2018 Jatunda</p>
-        </footer>
-      </div>
+  <!-- FOOTER  -->
+  <div id="footer_wrap" class="outer">
+    <footer class="inner">
+      <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      <p>Version 002</p>
+      <p>Copyright 2018 Jatunda</p>
+    </footer>
+  </div>
 
-      <script>
-    // Get the element with id="defaultOpen" and click on it
+  <!-- Get the element with id="defaultOpen" and click on it -->
+  <script>
+    // COMMENT
     document.getElementById("defaultOpen").click();
   </script>
 
