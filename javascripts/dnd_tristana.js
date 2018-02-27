@@ -61,3 +61,51 @@ function add_hp(n)
     document.getElementById("hp_display").innerHTML = newHP;
 }
 
+$mydialog = $("#dialog").dialog({
+    autoOpen:false
+});
+// $( "popupinfo").click(function() {
+//     $(".dialog").dialog("open");
+// })
+
+
+// function popup(evt, str)
+// {
+//     $(function(){
+//         $(".dialog").dialog();
+//     });
+// }
+
+function popup(event, title, str, width)
+{
+    //alert(width == undefined);
+    
+    // this line removes tags from strings ("<i>poop</i>" -> "poop")
+    document.getElementById("dialog").title = "Info: " + event.currentTarget.innerHTML.replace(/(<([^>]+)>)/ig,"");
+    
+
+    //var poop = document.getElementById("dialog").title;
+    title = "Info: " + title;
+    //alert(poop[0]);
+    $(function(){
+
+        $('#dialog').dialog({title:title});
+        if(width != undefined)
+        {
+            $('#dialog').dialog({
+                title:title,
+                width:width
+            });
+        }
+        $("#dialog").html(str);
+        //alert($("#dialog").innerHTML);
+        $("#dialog").dialog();
+        //$("#dialog").style="display:block"
+        //$("#dialog").show();
+
+        // alert(dialogbox.innerHTML);
+        // var elem = $(.)
+        //alert("sup");
+    });
+}
+

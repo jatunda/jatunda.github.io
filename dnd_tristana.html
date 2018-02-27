@@ -7,8 +7,14 @@
   <meta name="description" content="Jatunda.GitHub.io : ">
 
   <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="jquery-ui-1.12.1/jquery-ui.css">
   <title>Tristana Lemar</title>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" src="favicon.ico">
+
+  <script src="javascripts/jquery-3.3.1.js"></script>
+  <script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript" src="javascripts/tristana_magic_index.js"></script> 
+  <script type="text/javascript" src="javascripts/dnd_tristana.js"></script>
 </head>
 
 <nav>
@@ -19,9 +25,6 @@
 </nav>
 
 
-<script src="javascripts/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="javascripts/tristana_magic_index.js"></script> 
-<script type="text/javascript" src="javascripts/dnd_tristana.js"></script>
 
 <body>
 
@@ -32,6 +35,8 @@
       <h2 id="project_tagline">An attempt to make magic come alive</h2>
     </header>
   </div>
+  
+  <div id='dialog' title='Info' style="display:none;">popup dialog!</div>
 
   <!-- MAIN CONTENT -->
   <div id="main_content_wrap" class="outer">
@@ -50,6 +55,7 @@
         <button class="tablinks" onclick="openTab(event, 'Emotional Magic')">Emotional Magic</button>
         <button class="tablinks" onclick="openTab(event, 'General Magic')">General Magic</button>
       </div>
+      
 
       <div class="tabholder">
         <div id='About' class="tabcontent">
@@ -99,13 +105,24 @@
           <img src="images/Vagabond_Girl.png" style="float:right;max-width:48%">
           <p>
             Level 2 Chaotic Good Human Sorcerer<br>
-            Game Group: Pink EllenDNDale<br>
-            <strong>STR:</strong> 06 (-2)<br>
-            <strong>DEX:</strong> 15 (+2)<br>
-            <strong>CON:</strong> 18 (+4)<br>
-            <strong>INT:</strong> 09 (-1)<br>
-            <strong>WIS:</strong> 08 (-1)<br>
-            <strong>CHR:</strong> 16 (+3)<br>
+            Game Group: 
+            <a class="popupinfo" onclick="popup(event,'Pink EllenDNDale',
+              'Kevin Wu: the Bard with the card tricks</br>' +
+              'Arthur Shau: the Shepard turned Fighter</br>' +
+              'Alex Hong: the Chef Cleric</br>'+
+              'Vincent Yang: the lazy Mummy Ninja</br> '+
+              'VR Val: the Mechanical DM</br>'+
+              'Erica Park: the Character Actor & Narrative DM</br>'+
+              '<em>Spring 2018, USC</em>', 
+              380)">Pink EllenDNDale
+            </a><br>
+            <strong>STR: </strong><a class="popupinfo" onclick="popup(event,'Strength','Tristana is very weak due to her curse, and has difficulty pushing objects of her weight.')">06 (-2)</a><br>
+            <strong>DEX: </strong><a class="popupinfo" onclick="popup(event,'Dexterity','Trained from surviving for 10 years in the woods. She can catch or dodge a medium-speed surprise projectile, and is able to often hit targets the size of a pumpkin.')">15 (+2)</a><br>
+            <strong>CON: </strong><a class="popupinfo" onclick="popup(event,'Constitution','Having to scrounge for food and survive in the wild has made Tristana quite resilient, able to stay awake for days on end, shrugging off most illnesses, and able to eat mildly spoiled food.')">18 (+4)</a><br>
+            <strong>INT: </strong><a class="popupinfo" onclick="popup(event,'Intelligence','A secluded life leaves Tristana forgetting unimportant things, and having difficulty following some trains of thought.')">09 (-1)</a><br>
+            <strong>WIS: </strong><a class="popupinfo" onclick="popup(event,'Wisdom','Tristana is young, and emotionally driven, often taking actions before considering the conequences.')">08 (-1)</a><br>
+            <strong>CHR: </strong><a class="popupinfo" onclick="popup(event,'Charisma','Tristana\'s looks and innate magic draw people to her, and she receives greetings and conversations on the street')">16 (+3)</a><br>
+
 
             Hit Dice: d6<br>
             HP: 
@@ -114,9 +131,9 @@
             <button type="button" class="inlinebutton" onclick="add_hp(1)">+</button>  
             /20<br>
             Intiative: +2<br>
-            AC: 13 (11 + Dex)<br>
-            Age: 26 (16 years old + 10 from wild magic)<br>
-            Languages: Common, <em>Abyssal during demonic trance</em><br>
+            AC: <a class="popupinfo" onclick="popup(event,'Armor Class', 'Leather Armor (11) + DEX (2) = 13 AC')">13</a><br>
+            Age: <a class="popupinfo" onclick="popup(event,'Tristana\'s Age', 'Tristana has been alive for 16 years, but her body was aged 10 years by her wild magic, during the Murder on the Orient Express.')">26</a><br>
+            Languages: Common, <a class="popupinfo" onclick="popup(event,'Langauges','Tristana can also speak Abyssal (the language of demons) when she is possessed by her curse.')">Abyssal</a><br>
           </p>
 
 
