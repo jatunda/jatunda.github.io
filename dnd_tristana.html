@@ -8,25 +8,29 @@
 
   <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
   <link rel="stylesheet" type="text/css" media="screen" href="jquery-ui-1.12.1/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/jquery.sliderTabs.css">
+
+
   <title>Tristana Lemar</title>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" src="favicon.ico">
 
-  <script src="javascripts/jquery-3.3.1.js"></script>
-  <script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+  <!-- <script src="javascripts/jquery-3.3.1.js"></script> -->
+  <!-- <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- <script src="jquery-ui-1.12.1/jquery-ui.js"></script> -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
   <script type="text/javascript" src="javascripts/tristana_magic_index.js"></script> 
+  <script type="text/javascript" src="javascripts/jquery.sliderTabs.js"></script>
   <script type="text/javascript" src="javascripts/dnd_tristana.js"></script>
 </head>
 
-<nav>
-  <ul>
-    <li><a href="index.html">Main Page</a></li>
-    <li><strong>Tristana's Wild Magic</strong></li>
-  </ul>
-</nav>
-
-
-
 <body>
+  <nav>
+    <a href="index.html">Main Page</a> &#x2022;
+    <strong>Tristana's Wild Magic</strong>
+  </nav>
 
   <!-- HEADER -->
   <div id="header_wrap" class="outer">
@@ -35,7 +39,8 @@
       <h2 id="project_tagline">An attempt to make magic come alive</h2>
     </header>
   </div>
-  
+
+
   <div id='dialog' title='Info' style="display:none;">popup dialog!</div>
 
   <!-- MAIN CONTENT -->
@@ -48,6 +53,8 @@
         and gets less stable based on her emotional state.
       </p>
 
+
+
       <!-- tab links -->
       <div class = "tab">
         <button id="defaultOpen" class="tablinks" onclick="openTab(event, 'About')">About</button>
@@ -55,7 +62,7 @@
         <button class="tablinks" onclick="openTab(event, 'Emotional Magic')">Emotional Magic</button>
         <button class="tablinks" onclick="openTab(event, 'General Magic')">General Magic</button>
       </div>
-      
+
 
       <div class="tabholder">
         <div id='About' class="tabcontent">
@@ -93,14 +100,7 @@
         <!-- END ABOUT TAB -->
 
         <div id='Character Sheet' class="tabcontent">
-          <!--
-          HP: 
-            Heart icon showing curr Hp / max hp
-            plus/minus buttons. When you hit 0, HP turns into Death saving throws. 
-          Hovertext: 
-            Armor: show components (Leather Armor (10) + Dex Modifyer (1) + Shield (2))
-            HP: if Temp HP, show "Temporary HP: x", else: "Total Damage: x"
-          -->
+
           <h3> Tristana Lemar, the Unfortunate</h3>
           <img src="images/Vagabond_Girl.png" style="float:right;max-width:48%">
           <p>
@@ -132,7 +132,7 @@
             /20<br>
             Intiative: +2<br>
             AC: <a class="popupinfo" onclick="popup(event,'Armor Class', 'Leather Armor (11) + DEX (2) = 13 AC')">13</a><br>
-            Age: <a class="popupinfo" onclick="popup(event,'Tristana\'s Age', 'Tristana has been alive for 16 years, but her body was aged 10 years by her wild magic, during the Murder on the Orient Express.')">26</a><br>
+            Age: <a class="popupinfo" onclick="popup(event,'Tristana\'s Age', 'Tristana has been alive for 15 years, but her body was aged 10 years by her wild magic, during the Murder on the Orient Express. It wears off in 24 hours.')">25/15</a><br>
             Languages: Common, <a class="popupinfo" onclick="popup(event,'Langauges','Tristana can also speak Abyssal (the language of demons) when she is possessed by her curse.')">Abyssal</a><br>
           </p>
 
@@ -189,101 +189,96 @@
             <li>Blow at a creature to force them to speak their deepest, darkest secret.</li>
           </ul>
 
-          <h4>Proficiencies:</h4>
-
-          <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Melee Weapons:</h5>
-            <ul>
-              <li>Club</li>
-              <li>Dagger</li>
-              <li>Handaxe</li>
-              <li>Light Hammer</li>
-              <li>Mace</li>
-              <li>Shortsword</li>
-            </ul>
+          <div id="Proficiencies">
+            <h4>Proficiencies:</h4>
+            <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Melee Weapons:</h5>
+              <ul>
+                <li>Club</li>
+                <li>Dagger</li>
+                <li>Handaxe</li>
+                <li>Light Hammer</li>
+                <li>Mace</li>
+                <li>Shortsword</li>
+              </ul>
+            </div>
+            <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Ranged Weapons:</h5>
+              <ul>
+                <!-- <li>Darts</li> -->
+                <li>Sling</li>
+                <li>Light Crossbow</li>
+                <li>Heavy Crossbow</li>
+                <li>Shortbow</li>
+                <li>Longbow</li>
+                <li>Net</li>
+              </ul>
+            </div>
+            <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Tools:</h5>
+              <ul>
+                <li>Wood Carving Tool</li>
+                <li>Animal Trap</li>
+              </ul>
+            </div>
+            <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Armor:</h5>
+              <ul>
+                <li>Light</li>
+              </ul>
+            </div>
           </div>
 
-          <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Ranged Weapons:</h5>
-            <ul>
-              <!-- <li>Darts</li> -->
-              <li>Sling</li>
-              <li>Light Crossbow</li>
-              <li>Heavy Crossbow</li>
-              <li>Shortbow</li>
-              <li>Longbow</li>
-              <li>Net</li>
-            </ul>
-          </div>
-          <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Tools:</h5>
-            <ul>
-              <li>Wood Carving Tool</li>
-              <li>Animal Trap</li>
-            </ul>
-          </div>
-          <div style="; box-sizing: border-box;border:1px solid #ccc;float:left;width:33%;padding:0px 10px 0px 10px;"><h5>Armor:</h5>
-            <ul>
-              <li>Light</li>
-            </ul>
+
+
+          <div id="Personal Characteristics">
+            <h4>Personal Characteristics</h4>
+            <h5>Traits</h5>
+            + I'm too emotional... Sometimes I do stuff without thinking...<br>
+            + I don't like it when my friends argue, but I'm not good at stopping it.<br>
+            + I don't know why, but people are nice to me, and like talking to me.<br>
+            + When someone insults me, I get worried because I don't want to be bad.<br>
+            + People aren't angry at me a lot. I think it's because I'm not angry at them?<br>
+            + The thing that scares me the most is mean people.<br>
+            + I don't know a lot of words.<br>
+            + If someone is nice, then they're my friend!<br>
+            + You'll often hear me say <em>"I never thought of that before!"</em><br>
+            + Sometimes, I say things out loud that you're not supposed to say out loud<br>
+
+            <h5>Ideals</h5>
+            Friends are important! They're nice and good!<br>
+            More food is good, because not enough food is bad! So I always do more food.<br>
+
+            <h5>Bonds</h5>
+            I want to make my magic useful, and help all the nice people I know.<br>
+            <em>I want to get rid of my curse (only after she finds out she's cursed)</em><br>
+
+            <h5>Background</h5>
+            Born in a small village in the mountain forest.<br> 
+            Mother died during childbirth, passing on a demonic curse to Tristana.<br> 
+            Father was a hunter/trapper. <br>
+            Accidentally burned down house (Emotional Wild Magic) at age 8.<br>
+            Ran away, crying, and accidentally fell off a cliff. Couldn't find my way back to the village.<br>
+            Lived alone in the forest from 8 to 15.<br>
+
+            <h5>Party Friendship! Background</h5>
+            Met Shepard when I saw sheep for the first time. He fed me. We became friends.<br>
+            Chef is nice because he makes the food I have more tasty. <br>
+            The Bard is funny and his card magic is so cool!<br>
+            Ninja man is fun to hug.<br>
           </div>
 
-          <h4 style="clear:both;"><br>Skills:</h4>
-          Constitution Saving Throw (+6)<br>
-          Charisma Saving Throw (+5)<br>
-          Nature (+2)<br>
-          Stealth (+4) (+8 with sexy cat suit)<br>
-          Survival (+2)<br>
-          Eating Bad Food (+6)<br>
-          Whittling (+4)<br>
+          <div>
+            <h4>Skills:</h4>
+            Constitution Saving Throw (+6)<br>
+            Charisma Saving Throw (+5)<br>
+            Nature (+2)<br>
+            Stealth (+4) (+8 with sexy cat suit)<br>
+            Survival (+2)<br>
+            Eating Bad Food (+6)<br>
+            Whittling (+4)<br>
+          </div>
 
           <h4>Magic:</h4>
           Save DC: 13<br>
           Spell Hit Modifier: +5<br>
 
-          <h5>Emotional Spells:</h5>
-
-          Fire Bolt (Cantrip)<br>
-          Burning Hands (lvl 1)<br>
-          Fireball (lvl 3)<br>
-          Wall of Fire (lvl 4)<br>
-          Flame Strike (lvl 5)<br>
-          Fire storm (lvl 7) (50 ft sphere centered on self)<br>
-          Meteor Swarm (lvl 9)(100 ft sphere centered on self)<br>
-          <br>
-
-          Cure Wounds (lvl 1)<br>
-          Heal<br>
-          Regenerate<br>
-          <br>
-
-          Revivify<br>
-          Ressurection<br>
-          <br>
-
-          ThunderWave<br>
-          Shatter <br>
-          <br>
-
-          Misty Step (Teleportation, can do multiple)<br>
-          Blink<br>
-          Darkness<br>
-          Teleportation<br>
-          Invisibility<br>
-          Etherealness<br>
-          <br>
-
-          Globe of Invulnerability<br>
-          <br>
-
-          Feather Fall<br>
-          Water Breathing<br>
-          Expeditious Retreat<br>
-          <br>
-
-
-          Hold Person<br>
-          Circle of Death (Centered on self)<br>
-          <br>
-
-          Wish<br>
         </div>
         <!-- END CHARACTER SHEET TAB -->
 
@@ -329,29 +324,120 @@
             </li> 
           </ul>
 
+          <div id="Emotional Spells">
+            <h5>Emotional Spells:</h5>
+            <form oninput="x.value=parseInt(a.value)" style="padding:0px">
+              <input type="range" value="10" min="1" max="20" name="a" id="a"></input>
+              <output id="x" for="a"></output>
+            </form>
+            Fire:
+            <select>
+              <option>Fire Bolt (Cantrip)</option>
+              <option>Burning Hands (lvl 1)</option>
+              <option>Fireball (lvl 3)</option>
+              <option>Wall of Fire (lvl 4)</option>
+              <option>Flame Strike (lvl 5)</option>
+              <option>Fire storm (lvl 7) (50 ft sphere centered on self)</option>
+              <option>Meteor Swarm (lvl 9)(100 ft sphere centered on self)</option>
+            </select>
+            <br>
+
+            Healing:
+            <select>
+              <option>Cure Wounds (lvl 1)</option>
+              <option>Heal</option>
+              <option>Regenerate</option>
+            </select>
+            <br>
+
+
+            Revival:
+            <select>
+              <option>Revivify</option>
+              <option>Ressurection</option>
+            </select>
+            <br>
+
+            Push Away:
+            <select>
+              <option>ThunderWave</option>
+              <option>Shatter</option>
+              <option>Arcane Hand</option>
+
+            </select>
+            <br>
+
+            Get Away:
+            <select>
+              <option>Expeditious Retreat</option>
+              <option>Misty Step (Teleportation, can do multiple)</option>
+              <option>Blink</option>
+              <option>Darkness</option>
+              <option>Teleportation</option>
+              <option>Invisibility</option>
+              <option>Etherealness</option>
+            </select>
+            <br>
+
+            Survive:
+            <select>
+              <option>Feather Fall</option>
+              <option>Water Breathing</option>
+              <option>Globe of Invulnerability</option>
+            </select>
+            <br>
+
+            Hatred:
+            <select>
+              <option>Hold Person</option>
+              <option>Circle of Death (Centered on self)</option>
+              <option>Any fire spell, with necrotic damage instead</option>
+            </select>
+            <br>
+            <p style="display:table;clear:both;">
+            </p>
+          </div>
+
           <h4>Example Responses Based on Emotion:</h4>
-          <table style="width:100%">
-            <tr><th>Emotion</th><th>Example Effect</th></tr>
-            <tr><td>Anger</td><td> Heat/Fire (Radiates), Shout => sonic boom, swing hand => force push</td></tr>
-            <tr><td>Sadness/Loss</td><td> Darkness (Radiates), Gravity (AoE)</td></tr>
-            <tr><td>Despair</td><td> some sort of black hole magic</td></tr>
-            <tr><td>Fear of Pain (Fight)</td><td> Magic Missiles randomly  </td></tr>
-            <tr><td>Fear of Scary (Flight)</td><td> Darkness (cloud) </td></tr>
-            <tr><td>Joy</td><td> Glow (Radiates) </td></tr>
-            <tr><td>Groggy Mornings</td><td> Slow (Radiates)</td></tr>
-            <tr><td>Adrenaline (Fights)</td><td> Attacks with force magic along with swings</td></tr>
-            <tr><td>Comradery</td><td> Casts Shield on allies</td></tr>
-            <tr><td>Envy</td><td> Decay (on object of envy) or General weakness (on a person)</td></tr>
-            <tr><td>Paranoia/Anxiety</td><td> Cast Tinnitus on everyone in range. Severe = cast Migraine instead </td></tr>
-            <tr><td>Embarrassment (to praise)</td><td> Pink bubbles out of ears</td></tr>
-            <tr><td>Strong Hope/Faith</td><td> Super buff allies and self</td></tr>
-            <tr><td>Frustration</td><td> All sides gravity on object of frustration (crush into ball)</td></tr>
-            <tr><td>Pride &amp; Righteousness</td><td> other magic is stronger</td></tr>
-            <tr><td>Cruelty</td><td> drain hp</td></tr>
-            <tr><td>Love (Romantic)</td><td> Some sort of boost on the person loved + temp HP + heal?</td></tr>
-            <tr><td>Hate</td><td> necrotic damage. Black fire?</td></tr>
-            <tr><td>Shame</td><td> invisible or cast weakening spells on self</td></tr>
-          </table>
+
+          <button class="inlinebutton" onclick="toggleDiv(event,'Emotion Table Holder')">Show/Hide Emotion Table</button>
+          <div id="Emotion Table Holder" style="height:0px;overflow:hidden;transition:0.2s;right:0">
+            <table id="Emotion Table" style="border-style:border-box">
+              <tr onclick="toggleDiv(event,'Emotion Table Holder')" style="cursor:pointer;"><th>Emotion</th><th>Example Effect</th></tr>
+              <tr><td>Anger</td><td> Heat/Fire (Radiates), Shout => sonic boom, swing hand => force push</td></tr>
+              <tr><td>Sadness/Loss</td><td> Darkness (Radiates), Gravity (AoE)</td></tr>
+              <tr><td>Despair</td><td> some sort of black hole magic</td></tr>
+              <tr><td>Fear of Pain (Fight)</td><td> Magic Missiles randomly  </td></tr>
+              <tr><td>Fear of Scary (Excape)</td><td> Darkness (cloud) </td></tr>
+              <tr><td>Joy</td><td> Glow (Radiates) </td></tr>
+              <tr><td>Groggy Mornings</td><td> Slow (Radiates)</td></tr>
+              <tr><td>Adrenaline (Fights)</td><td> Attacks made with blunt weapon do extra Force damage + knockback</td></tr>
+              <tr><td>Comradery</td><td> Casts Shield on allies</td></tr>
+              <tr><td>Envy</td><td> Decay (on object of envy) or General weakness (on a person)</td></tr>
+              <tr><td>Paranoia/Anxiety</td><td> Cast Tinnitus on everyone in range. Severe = cast Migraine instead </td></tr>
+              <tr><td>Embarrassment (to praise)</td><td> Pink bubbles out of ears</td></tr>
+              <tr><td>Strong Hope/Faith</td><td> Allies get advantage to all rolls for a period of time</td></tr>
+              <tr><td>Frustration</td><td> Gravity magic: 360 degree trash compactor, centered on object of frustration</td></tr>
+              <tr><td>Pride &amp; Righteousness</td><td> All magic cast by Tristana + 2 spell levels for a period of time</td></tr>
+              <tr><td>Cruelty</td><td> passively drain hp</td></tr>
+              <tr><td>Love (Romantic)</td><td> SO gets 1/2 resistance to all dmg, and LVL x Hitdice temporary HP</td></tr>
+              <tr><td>Hate</td><td> Black fire that can't be put out. Does necrotic damage.</td></tr>
+              <tr><td>Shame</td><td> Turn invisible, or cast weakening spells on self</td></tr>
+            </table>
+          </div>
+
+          <h5>Mantle  of Flame</h5>
+          <p>
+            When pushed to the emotional edge, Tristana unleashs the full power of her fire. 
+            She magically wreathes herself in swirling fire, her hair becomes fire, and her eyes glow like hot coals.
+            For 1 minute, Tristana gain the following benefits:
+            <ul>
+              <li>She sheds bright light in a 30-foot radius and dim light for an additional 30 feet.</li>
+              <li>Any creature that touches you or hits you with a melee attack from within 5 ft takes fire damage equal to your Charisma  modifier.</li>
+              <li>Whenever you roll fire damage on your turn, the roll gains a bonus to equal to your Charisma modifier.</li>
+            </ul>
+            Once you use this feature, you can’t use it again until you finish a long rest.
+          </p>
         </div>
         <!-- END EMOTIONAL MAGIC TAB -->
 
@@ -378,15 +464,11 @@
             </p>
             <div style="text-align:center;">
               <p>
-                <!--<div style="width:50%;float:left;">
-                  <button type="button" style="border-radius: 4px;top:50%;left:50%;" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Normal Magic</button>
-                </div>
-                <div style="width:50%;float:left;">
-                  <button type="button" style="border-radius: 4px;top:50%;left:50%;" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Wild Magic</button>
-                </div>-->
                 <button type="button" style="border-radius: 4px;left:50%;" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Wild Magic</button>
               </p>
-              <p id="roll_answer" style="clear:both;">Click a button to roll<br><em>~Magic~</em></p>
+              <p id="roll_answer" style="clear:both;">
+                Click a button to roll<br><em>~Magic~</em>
+              </p>
             </div>
             <h5>Intentional Wild Magic</h5>
             <p>
@@ -413,7 +495,9 @@
         </div>
         <!-- END GENERAL MAGIC TAB -->  
       </div>
+      <!-- END tabholder div -->
     </section>
+    <!-- END section main_content class="inner" -->
   </div>
   <!-- END MAIN CONTENT -->
 
@@ -427,13 +511,16 @@
   </div>
 
   <!-- Get the element with id="defaultOpen" and click on it -->
+
   <script>
     // COMMENT
     if(document.getElementById("defaultOpen"))
     {
       document.getElementById("defaultOpen").click();
     }
+
   </script>
 
 </body>
+
 </html>

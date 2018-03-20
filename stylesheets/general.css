@@ -1,0 +1,60 @@
+body {
+	color:#ddd;
+	background: #333;
+}
+
+nav {
+	color:#aaa;
+}
+
+.outer
+{
+	width:100%;
+}
+
+#main_content_wrap {
+	color:#222;
+	background-color:#ccc;
+	width: 100%;
+}
+
+.popover-header {
+	color:#000;
+}
+
+.inner
+{
+	/*width:100%;*/
+	margin: 0px 0px 0px 0px;
+	max-width: 100%;
+}
+
+
+.fat 
+{
+	width: 100%;
+}
+.nav-item .md
+{
+	width:100%;
+}
+
+.nav-link:hover
+{
+	background-color: #ddd;
+}
+
+.nav-link:active
+{
+	background-color: #bbb;
+}
+
+.nav-item .active {
+	background-color: #007bff;
+	color: #fff;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}

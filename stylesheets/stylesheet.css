@@ -259,6 +259,21 @@ form {
   padding: 20px;
 }
 
+nav {
+  padding: 5px;
+  line-height: 1.2;
+}
+
+nav ul {
+  list-style:none;
+  padding-left: 0px;
+}
+
+nav li {
+  display:inline-block;
+}
+
+
 /*******************************************************************************
 Full-Width Styles
 *******************************************************************************/
@@ -379,7 +394,6 @@ Full-Width Styles
 }
 
 
-
 /* Create an active/current tablink class.
 This is the button that governs which tab is active. */
 .tab button {
@@ -467,6 +481,12 @@ This is the button that governs which tab is active. */
 
 .popupinfo{
   cursor:pointer;
+}
+
+#Proficiencies:after {
+  content:"";
+  display:table;
+  clear:both;
 }
 
 /* Go from zero to full opacity */

@@ -10,6 +10,7 @@ function openTab(evt, tabName) {
         if(tabcontent[i].style.display != "none")
         {
             tabcontent[i].style.display = "none";
+            document.getElementsByClassName("tabholder")[0].style.height = $(tabcontent[i]).height() + "px"
         }
     }
     // make all tablinks inactive
@@ -21,7 +22,8 @@ function openTab(evt, tabName) {
     // display our tab, and tablink
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
-    document.getElementsByClassName("tabholder")[0].style.height = $(document.getElementById(tabName)).height() + "px";
+    // document.getElementsByClassName("tabholder")[0].style.height = $(document.getElementById(tabName)).height() + "px";
+    document.getElementsByClassName("tabholder")[0].style.height = 'auto';
     //document.getElementById("tabHolder").style.height = '100px';
     //alert("yo");
     //alert(document.getElementById("tabHolder").style.zIndex)
@@ -108,4 +110,34 @@ function popup(event, title, str, width)
         //alert("sup");
     });
 }
+
+function toggleDiv(evt, id){
+    var elem = document.getElementById(id);
+    if(elem.style.height == '0px'){
+        elem.style.height = 'auto';
+    }
+    else {
+        elem.style.height = '0px';
+    }
+}
+
+function constructor(){
+    window.onload = init;
+    function init(){
+        alert(document.getElementById("main_slider_tabs").style);
+
+        var slider = document.getElementById("main_slider_tabs").sliderTabs({
+          autoplay:false,
+          mousewheel:false,
+          indicators:false,
+          panelArrows:false,
+          tabs:true,
+          transition:'fade',
+          classes:{
+
+          }
+      });
+    }
+}
+
 
