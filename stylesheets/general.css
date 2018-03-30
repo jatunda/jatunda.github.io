@@ -5,6 +5,7 @@ body {
 
 nav {
 	color:#aaa;
+	background-color:#000;
 }
 
 .outer
@@ -12,10 +13,22 @@ nav {
 	width:100%;
 }
 
+#header_wrap {
+	padding: 10px;
+}
+
 #main_content_wrap {
 	color:#222;
 	background-color:#ccc;
 	width: 100%;
+	padding: 10px;
+}
+
+#main_content {
+}
+
+#footer_wrap {
+	padding:10px;
 }
 
 .popover-header {
@@ -34,6 +47,7 @@ nav {
 {
 	width: 100%;
 }
+
 .nav-item .md
 {
 	width:100%;
@@ -55,6 +69,53 @@ nav {
 }
 
 .nopadding {
-   padding: 0 !important;
-   margin: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+.affix {
+  top: 0;
+  width: 100%;
+}
+
+.affix-top {
+  width: 100%;
+}
+
+.affix-bottom {
+  position: absolute;
+  width: 100%;  
+}
+
+.no-margin {
+	margin:0px 0px 0px 0px;
+}
+.small-margin {
+	margin:2px 2px 2px 2px;
+}
+
+.no-padding {
+	padding:0px;
+}
+
+#hp-holder {
+	position:relative;
+	width:120px;
+	height:120px;
+	color:#fff;
+}
+
+.floating-centered {
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+}
+
+.relative {
+	position:relative;
 }

@@ -21,6 +21,7 @@
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="javascripts/dnd_tristana2.js"></script>
+  <script type="text/javascript" src="javascripts/tristana_magic_index.js"></script> 
 
   <!-- <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script> -->
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
@@ -33,10 +34,10 @@
   <!-- <script type="text/javascript" src="javascripts/dnd_tristana.js"></script> -->
 </head>
 
-<body>
-  <nav>
+<body data-spy="scroll" data-target=".nav" data-offset="50">
+  <nav style="background-color:#000;">
     <a href="index.html">Main Page</a> &#x2022;
-    <strong>Test Page</strong>
+    <strong>Tristana Lemar</strong>
   </nav>
   <!-- HEADER -->
   <div id="header_wrap" class="outer container">
@@ -53,67 +54,73 @@
   <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner container">
       <div class="row">
-        <div class="col-md-3 col-lg-2 nopadding">
-            <ul class="nav" role="tablist">
-              <li class="nav-item col-4 col-md-12 text-center nopadding">
-                <a class="nav-link" data-toggle="tab" href="#AboutTab" role="tab">About</a>
-              </li>
-              <li class="nav-item col-4 col-md-12 text-center nopadding">
-                <a class="nav-link active" data-toggle="tab" href="#CharacterSheetTab">Character Sheet</a>
-              </li>
-              <li class="nav-item col-4 col-md-12 text-center nopadding">
-                <a class="nav-link" data-toggle="tab" href="#MagicTab">Magic</a>
-              </li>
-            </ul>
+        <div class="col-md-3 col-lg-2">
+
+          <ul class="nav" role="tablist">
+            <li class="nav-item col-3 col-sm-4 col-md-12 text-center nopadding">
+              <a class="nav-link" data-toggle="tab" href="#AboutTab" role="tab">About</a>
+            </li>
+            <li class="nav-item col-6 col-sm-4 col-md-12 text-center nopadding">
+              <a class="nav-link active" data-toggle="tab" href="#CharacterSheetTab">Character Sheet</a>
+            </li>
+            <li class="nav-item col-3 col-sm-4 col-md-12 text-center nopadding">
+              <a class="nav-link" data-toggle="tab" href="#MagicTab">Magic</a>
+            </li>
+          </ul>
         </div>
+
+
 
         <div class="tab-content col-md-9 col-lg-10">
           <div class="tab-pane" id="AboutTab">          
-              <h3>Introduction</h3>
-              <p>
-                This system was created to make the game more interesting, 
-                and to help the DM guide the story, the player characters, 
-                and Tristana’s personal character development. The system serves the story, 
-                not the other way around. Feel free to fudge anything here to enrich the DnD 
-                experience. At its core, this webpage is a collection of guidelines to help you 
-                better understand and curate Tristana’s emotional and magical journey.
-              </p>
+            <h3>Introduction</h3>
+            <p>
+              This system was created to make the game more interesting, 
+              and to help the DM guide the story, the player characters, 
+              and Tristana’s personal character development. The system serves the story, 
+              not the other way around. Feel free to fudge anything here to enrich the DnD 
+              experience. At its core, this webpage is a collection of guidelines to help you 
+              better understand and curate Tristana’s emotional and magical journey.
+            </p>
 
-              <h3>Who is Tristana?</h3>
-              <ul>
-                <li>Emotionally driven</li>
-                <li>Mom died during childbirth, and passed a curse on to her</li>
-                <li>Left the civilized world at age 8</li>
-                <li>Grew up in the wild</li>
-                <li>Developing sense of morality</li>
-                <li>Values friendship, peace, harmony, and food</li>
-                <li>She's really just a normal girl with unfortunate circumstances. </li>
-              </ul>
+            <h3>Who is Tristana?</h3>
+            <ul>
+              <li>Emotionally driven</li>
+              <li>Mom died during childbirth, and passed a curse on to her</li>
+              <li>Left the civilized world at age 8</li>
+              <li>Grew up in the wild</li>
+              <li>Developing sense of morality</li>
+              <li>Values friendship, peace, harmony, and food</li>
+              <li>She's really just a normal girl with unfortunate circumstances. </li>
+            </ul>
 
-              <h3>Tristana's Relationship with Magic</h3>
-              <ol>
-                <li>Tristana is afraid of her own magic – at a young age, she accidently killed her family.</li>
-                <li>Tristana’s magic is the physical manifestation of her emotions. In moments of strong resolve, anger, fear, etc. Tristana <strong>will</strong> cast magic that is emotionally appropriate, even if she doesn’t want to.</li>
-                <li>She is deathly afraid of her magic, but she isn’t <em>bad</em> at it. Her magic is destabilized by her fear and lack of practice. </li>
-              </ol>
-            </div>
+            <h3>Tristana's Relationship with Magic</h3>
+            <ol>
+              <li>Tristana is afraid of her own magic – at a young age, she accidently killed her family.</li>
+              <li>Tristana’s magic is the physical manifestation of her emotions. In moments of strong resolve, anger, fear, etc. Tristana <strong>will</strong> cast magic that is emotionally appropriate, even if she doesn’t want to.</li>
+              <li>She is deathly afraid of her magic, but she isn’t <em>bad</em> at it. Her magic is destabilized by her fear and lack of practice. </li>
+            </ol>
+          </div>
           <!-- END ABOUT TAB -->
 
           <div class="tab-pane active" id="CharacterSheetTab">
+            <div class="row d-flex justify-content-between-sm">
 
-              <div class="row d-flex justify-content-between-sm">
-                <div class="col-md-6">
-                  <h2> Tristana Lemar</h2>
-                  Level 2 Human Sorcerer (&#x2640;)<br>
-                  Chaotic Good <br/>
-                Age: 15</a><br>
+
+
+
+              <div class="col-sm-6 text-center text-sm-left">
+                <h2> Tristana Lemar</h2>
+                Level 2 Human Sorcerer (&#x2640;)<br>
+                Chaotic Good <br/>
+                Age: 15<br>
                 Height: 5'7"<br/>
                 Weight: 110 lbs <br/>
-                Languages: Common, <a href="#" tabindex="0" data-toggle="popover" data-trigger="click" data-placement="auto" data-html="true"
+                Languages: Common, <a href="#/" tabindex="0" data-toggle="popover" data-trigger="focus hover" data-placement="auto" data-html="true"
                 data-title='The Language of Demons' data-content='Tristana can also speak Abyssal when she is possessed by her curse, or covered by her Mantle of Flames')"
                 >Abyssal</a><br>
 
-                Game Group: <a tabindex="0" href="#" data-toggle="popover" data-trigger="focus hover" data-placement="auto" data-html="true"
+                Game Group: <a tabindex="0" href="#/" data-toggle="popover" data-trigger="focus hover" data-placement="auto" data-html="true"
                 title="The Crew" 
                 data-content="Kevin Wu: the Bard with the card tricks<br/>
                 Arthur Shau: the Shepard turned Fighter<br/>
@@ -125,70 +132,137 @@
                 >Pink EllenDNDale</a>
 
               </div>
-              <div class="col-md-6 text-center text-md-right">
+
+
+              <div class="col-sm-6 text-center text-md-right">
                 <img class="img-fluid " src="images/Vagabond_Girl.png" style="object-fit:scale-down;height:auto;max-height:230px;">
               </div>
+
             </div>
+
+            <!-- Characteristics Card -->
             <p>
               <div class="card">
                 <div class="card-header">
-                  <a class="d-block" data-toggle="collapse" href="#Char_Weapons" aria-expanded="false">
-                    Weapons &amp; Attacks
-                  </a>
+                  <a class="d-block" data-toggle="collapse" href="#Char_Personality" aria-expanded="false">
+                    Characteristics
+                  </a>       
                 </div>
-
-
-                <!-- <a href="#Sub4">Goto Sub4</a> -->
-                <div class="collapse" id="Char_Weapons">
+                <div class="collapse"  id="Char_Personality">
                   <div class="card-body">
-                    Dagger - Father's Memento (Intricate carved handle)
-                    <ul>
-                      <li>+4 hit; 1d4+2 dmg</li>
-                    </ul>
-                    Shortbow - Self made (+inf arrows)
-                    <ul>
-                      <li>+4 hit; 1d6+2 dmg</li>
-                    </ul>
-                    Panic Fire - Can only be used when emotionally distressed
-                    <ul>
-                      <li>Cantrip: Hit:+5; 1d8+3(CHR) dmg; No effect on successful save;</li>
-                    </ul>
-                    Panic Fire 2 - Only used when overwhelmed (multiple enemies, or 1 enemy in 5ft threatening Tristana)
-                    <ul>
-                      <li>Lvl 1 Spell: 2d6 + 1d6 per mp + 3(CHR). 15 ft cone.</li>
-                    </ul>
-                    Cure Wounds - Tears cure wounds
-                    <ul>
-                      <li>Lvl 1 Spell: 1d8 per mp + 3(CHR). Must be fresh tears, and Tristana must want to heal.</li>
-                    </ul>
-                  </div>
+                    <h5>Traits</h5>
+                    I'm too emotional... Sometimes I do stuff without thinking...<br>
+                    I don't like it when my friends argue, but I'm not good at stopping it.<br>
+                    I don't know why, but people are nice to me, and like talking to me.<br>
+                    When someone insults me, I get worried because I don't want to be bad.<br>
+                    People aren't angry at me a lot. I think it's because I'm not angry at them?<br>
+                    The thing that scares me the most is mean people.<br>
+                    I don't know a lot of words.<br>
+                    If someone is nice, then they're my friend!<br>
+                    You'll often hear me say <em>"I never thought of that before!"</em><br>
+                    Sometimes, I say things out loud that you're not supposed to say out loud<br>
+
+                    <h5>Ideals</h5>
+                    Friends are important! They're nice and good!<br>
+                    More food is good, because not enough food is bad! So I like to get more food.<br>
+
+                    <h5>Bonds</h5>
+                    I want to make my magic useful, and help all the nice people I know.<br>
+                    <em>I want to get rid of my curse </em>(only after she finds out she's cursed)<br>
+
+                    <h5>Background</h5>
+                    Born in a small village in the mountain forest.<br> 
+                    Mother died during childbirth, passing on a demonic curse to Tristana.<br> 
+                    Father was a hunter/trapper. <br>
+                    Accidentally burned down house (Emotional Wild Magic) at age 8.<br>
+                    Ran away, crying, and accidentally fell off a cliff. Couldn't find my way back to the village.<br>
+                    Lived alone in the forest from 8 to 15.<br>
+
+                    <h5>Party Friendship! Background</h5>
+                    Met Shepard when I saw sheep for the first time. He fed me. We became friends.<br>
+                    Chef is nice because he makes the food I have more tasty. <br>
+                    The Bard is funny and his card magic is so cool!<br>
+                    Ninja man is fun to hug.<br>
+                  </div>  
                 </div>
               </div>
             </p>
 
+            <!-- Numbers Card -->
             <p>
               <div class="card">
-
                 <div class="card-header">
-                  <a data-toggle="collapse" href="#Char_Items" aria-expanded=false class="d-block">
-                    Noteworthy Items
-                  </a>
-                </div>
-                <div class="collapse"  id="Char_Items">
+                  <a class="d-block" data-toggle="collapse" href="#Char_Numbers" aria-expanded="false">
+                    Numbers
+                  </a>      
+                </div> 
+
+                <div class="collapse"  id="Char_Numbers">
                   <div class="card-body">
-                    Sexy Sexy Catsuit
-                    <ul>
-                      <li>+4 to stealth rolls. Must end every sentence with <em>"nya~"</em>.</li>
-                    </ul>
-                    Clarinet of Truth
-                    <ul>
-                      <li>Blow at a creature to force them to speak their deepest, darkest secret.</li>
-                    </ul>
+                    <div class="row">
+                      <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                        <div id="hp-holder" class = "" >
+                          <img src="images/heart.png" class= "floating-centered" height="120px" width="120px" />
+                          <div style="padding:10px;">
+                            <div class = "floating-centered ">
+                              <div class="row justify-content-center">
+                                HP
+                              </div>
+                              <div class="row d-flex">
+
+                                <div class="col-4 text-center no-padding no-margin">
+                                  <button class="btn-xs btn-light"  onclick="add_hp(-1)">-</button>
+                                </div>
+                                <div class="col-4 text-center no-padding">
+                                  <!-- <span id="hp_display" style="border:1px solid #ccc;width:30px;display:inline-block;text-align: center;">20</span> -->
+                                  <span id="hp_display" class="no-margin">20</span>
+                                  <hr class="small-margin"/>
+                                  <span>20</span>
+                                </div>
+                                <div class="col-4 text-center no-padding no-margin">
+                                  <button class="btn-xs btn-light"  onclick="add_hp(1)">+</button>  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+
+                        <strong>STR: </strong><a href="#/" tabindex="0" data-toggle="popover" data-trigger="focus hover" data-placement="auto" data-html="true"
+                        data-title='Strength' data-content='Tristana is weakened due to her curse, and has difficulty pushing objects of her weight.')"
+                        >06 (-2)</a><br>
+                        <strong>DEX: </strong><a class="popupinfo" onclick="popup(event,'Dexterity','Trained from surviving for 10 years in the woods, Tristana can catch or dodge a medium-speed surprise projectile, and is able to reliably hit moving targets the size of a pumpkin.')">15 (+2)</a><br>
+                        <strong>CON: </strong><a class="popupinfo" onclick="popup(event,'Constitution','10 years of living in the forest has made Tristana quite resilient - able to stay awake for days on end, shrugging off most illnesses, and able to eat mildly spoiled food.')">18 (+4)</a><br>
+                        <strong>INT: </strong><a class="popupinfo" onclick="popup(event,'Intelligence','A secluded life leaves Tristana forgetting unimportant things, and having difficulty following some trains of thought.')">09 (-1)</a><br>
+                        <strong>WIS: </strong><a class="popupinfo" onclick="popup(event,'Wisdom','Tristana is young, and emotionally driven, often taking actions before considering the conequences.')">08 (-1)</a><br>
+                        <strong>CHR: </strong><a class="popupinfo" onclick="popup(event,'Charisma','Tristana\'s looks and innate magic draw people to her, and she receives greetings and conversations on the street')">16 (+3)</a><br>
+
+                      </div>
+
+                      <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+
+                        Size: Medium<br>
+                        Hit Dice: d6<br>
+                        <div class="form-check">
+                          <input type="checkbox" class="form-check-input" id="inspiration_box">
+                          <label class="form-check-label" for="inspiration_box">Inspiration</label>
+                        </div>
+
+                        Intiative: +2<br>
+                        AC: <a class="popupinfo" onclick="popup(event,'Armor Class', 'Leather Armor (11) + DEX (2) = 13 AC')">13</a><br>
+                        Speed: 30ft<br/>
+                      </div>
+
+                    </div>
                   </div>
-                </div>
+                </div>  
               </div>
             </p>
 
+            <!-- Skills card -->
             <p>
               <div class="card">
                 <div class="card-header">
@@ -218,8 +292,71 @@
                   </div> 
                 </div>
               </div>  
-            </p>    
+            </p>   
 
+            <!-- Items Card -->
+            <p>
+              <div class="card">
+
+                <div class="card-header">
+                  <a data-toggle="collapse" href="#Char_Items" aria-expanded=false class="d-block">
+                    Noteworthy Items
+                  </a>
+                </div>
+                <div class="collapse"  id="Char_Items">
+                  <div class="card-body">
+                    Sexy Sexy Catsuit
+                    <ul>
+                      <li>+4 to stealth rolls. Must end every sentence with <em>"nya~"</em>.</li>
+                    </ul>
+                    Clarinet of Truth
+                    <ul>
+                      <li>Blow at a creature to force them to speak their deepest, darkest secret.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </p>
+
+            <!-- Weapons/Attacks Card -->
+            <p>
+              <div class="card">
+                <div class="card-header">
+                  <a class="d-block" data-toggle="collapse" href="#Char_Weapons" aria-expanded="false">
+                    Weapons &amp; Attacks
+                  </a>
+                </div>
+
+
+                <!-- <a href="#Sub4">Goto Sub4</a> -->
+                <div class="collapse" id="Char_Weapons">
+                  <div class="card-body">
+                    Brenton Lemar's Dagger <em>Father's Memento (Intricate carved handle)</em>
+                    <ul>
+                      <li>+4 hit; 1d4+2 dmg</li>
+                    </ul>
+                    Shortbow - Self made (+inf arrows)
+                    <ul>
+                      <li>+4 hit; 1d6+2 dmg</li>
+                    </ul>
+                    Panic Fire - Can only be used when emotionally distressed
+                    <ul>
+                      <li>Cantrip: Hit:+5; 1d8+3(CHR) dmg; No effect on successful save;</li>
+                    </ul>
+                    Panic Fire 2 - Only used when overwhelmed (multiple enemies, or 1 enemy in 5ft threatening Tristana)
+                    <ul>
+                      <li>Lvl 1 Spell: 2d6 + 1d6 per mp + 3(CHR). 15 ft cone.</li>
+                    </ul>
+                    Cure Wounds - Tears cure wounds
+                    <ul>
+                      <li>Lvl 1 Spell: 1d8 per mp + 3(CHR). Must be fresh tears, and Tristana must want to heal.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </p>
+
+            <!-- Proficiencies Car -->
             <p>
               <div class="card">
                 <div class="card-header">
@@ -277,106 +414,39 @@
               </div>
             </p>
 
+          </div>
+
+          <div class="tab-pane" id="MagicTab">
             <p>
-              <div class="card">
-                <div class="card-header">
-                  <a class="d-block" data-toggle="collapse" href="#Char_Numbers" aria-expanded="false">
-                    Numbers
-                  </a>      
-                </div> 
-
-                <div class="collapse"  id="Char_Numbers">
-                  <div class="card-body">
-                    <strong>STR: </strong><a class="popupinfo" onclick="popup(event,'Strength','Tristana is weakened due to her curse, and has difficulty pushing objects of her weight.')">06 (-2)</a><br>
-                    <strong>DEX: </strong><a class="popupinfo" onclick="popup(event,'Dexterity','Trained from surviving for 10 years in the woods, Tristana can catch or dodge a medium-speed surprise projectile, and is able to reliably hit moving targets the size of a pumpkin.')">15 (+2)</a><br>
-                    <strong>CON: </strong><a class="popupinfo" onclick="popup(event,'Constitution','10 years of living in the forest has made Tristana quite resilient - able to stay awake for days on end, shrugging off most illnesses, and able to eat mildly spoiled food.')">18 (+4)</a><br>
-                    <strong>INT: </strong><a class="popupinfo" onclick="popup(event,'Intelligence','A secluded life leaves Tristana forgetting unimportant things, and having difficulty following some trains of thought.')">09 (-1)</a><br>
-                    <strong>WIS: </strong><a class="popupinfo" onclick="popup(event,'Wisdom','Tristana is young, and emotionally driven, often taking actions before considering the conequences.')">08 (-1)</a><br>
-                    <strong>CHR: </strong><a class="popupinfo" onclick="popup(event,'Charisma','Tristana\'s looks and innate magic draw people to her, and she receives greetings and conversations on the street')">16 (+3)</a><br>
-                    Size: Medium<br>
-                    Hit Dice: d6<br>
-                    HP: 
-                    <button type="button" class="inlinebutton" onclick="add_hp(-1)">-</button>
-                    <span id="hp_display" style="border:1px solid #ccc;width:30px;display:inline-block;text-align: center;">20</span>
-                    <button type="button" class="inlinebutton" onclick="add_hp(1)">+</button>  
-                    /20<br>
-                    Intiative: +2<br>
-                    AC: <a class="popupinfo" onclick="popup(event,'Armor Class', 'Leather Armor (11) + DEX (2) = 13 AC')">13</a><br>
-                    Speed: 30ft<br/>
-
-                  </div>
-
-                </div>  
-              </div>
-            </p>
-
-            <p>
-              <div class="card">
-                <div class="card-header">
-                  <a class="d-block" data-toggle="collapse" href="#Char_Personality" aria-expanded="false">
-                    Characteristics
-                  </a>       
+              <div class=" row text-center">
+                <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                  <p>
+                    <button class=" btn-lg btn-primary" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Wild Magic</button>
+                  </p>
                 </div>
-                <div class="collapse"  id="Char_Personality">
-                  <div class="card-body">
-                    <h5>Traits</h5>
-                    I'm too emotional... Sometimes I do stuff without thinking...<br>
-                    I don't like it when my friends argue, but I'm not good at stopping it.<br>
-                    I don't know why, but people are nice to me, and like talking to me.<br>
-                    When someone insults me, I get worried because I don't want to be bad.<br>
-                    People aren't angry at me a lot. I think it's because I'm not angry at them?<br>
-                    The thing that scares me the most is mean people.<br>
-                    I don't know a lot of words.<br>
-                    If someone is nice, then they're my friend!<br>
-                    You'll often hear me say <em>"I never thought of that before!"</em><br>
-                    Sometimes, I say things out loud that you're not supposed to say out loud<br>
-
-                    <h5>Ideals</h5>
-                    Friends are important! They're nice and good!<br>
-                    More food is good, because not enough food is bad! So I like to get more food.<br>
-
-                    <h5>Bonds</h5>
-                    I want to make my magic useful, and help all the nice people I know.<br>
-                    <em>I want to get rid of my curse </em>(only after she finds out she's cursed)<br>
-
-                    <h5>Background</h5>
-                    Born in a small village in the mountain forest.<br> 
-                    Mother died during childbirth, passing on a demonic curse to Tristana.<br> 
-                    Father was a hunter/trapper. <br>
-                    Accidentally burned down house (Emotional Wild Magic) at age 8.<br>
-                    Ran away, crying, and accidentally fell off a cliff. Couldn't find my way back to the village.<br>
-                    Lived alone in the forest from 8 to 15.<br>
-
-                    <h5>Party Friendship! Background</h5>
-                    Met Shepard when I saw sheep for the first time. He fed me. We became friends.<br>
-                    Chef is nice because he makes the food I have more tasty. <br>
-                    The Bard is funny and his card magic is so cool!<br>
-                    Ninja man is fun to hug.<br>
-                  </div>  
+                <div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-9 text-center text-sm-left">
+                  <p id="roll_answer" style="clear:both;">
+                    Click a button to roll<br><em>~Magic~</em>
+                  </p>
                 </div>
               </div>
             </p>
-
+          </div>
         </div>
-
-        <div class="tab-pane" id="MagicTab">
-          Magic
-        </div>
-      </div>
-    </section>
-  </div>
-  <!-- END section main_content class="inner" -->
+      </section>
+    </div>
+    <!-- END section main_content class="inner" -->
 
 
-  <!-- END MAIN CONTENT -->
-  <!-- FOOTER  -->
-  <div id="footer_wrap" class="outer">
-    <footer class="inner">
-      <p>Copyright 2018 Jatunda</p>
-    </footer>
-  </div>
+    <!-- END MAIN CONTENT -->
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Copyright 2018 Jatunda</p>
+      </footer>
+    </div>
 
 
-</body>
+  </body>
 
-</html>
+  </html>
