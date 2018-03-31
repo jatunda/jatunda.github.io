@@ -133,7 +133,7 @@ html {
 }
 
 .card-header .fa {
-  transition: .3s transform ease-in-out;
+  transition: .3s ;
 }
 .card-header .collapsed .fa {
   transform: rotate(-90deg);
