@@ -6,6 +6,7 @@ body {
 nav {
 	color:#aaa;
 	background-color:#000;
+	padding:2px;
 }
 
 .outer
@@ -29,6 +30,10 @@ nav {
 
 #footer_wrap {
 	padding:10px;
+}
+
+.wrapper {
+	padding:15px;
 }
 
 .popover-header {
@@ -104,8 +109,15 @@ html {
 
 #hp-holder {
 	position:relative;
-	width:120px;
+	/*width:120px;*/
 	height:120px;
+	color:#fff;
+}
+
+#mp-holder {
+	position:relative;
+	/*width: 120px;*/
+	height: 120px;
 	color:#fff;
 }
 
@@ -118,4 +130,11 @@ html {
 
 .relative {
 	position:relative;
+}
+
+.card-header .fa {
+  transition: .3s transform ease-in-out;
+}
+.card-header .collapsed .fa {
+  transform: rotate(-90deg);
 }

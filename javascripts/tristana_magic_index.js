@@ -102,6 +102,14 @@ var d100_effects = {
 		"Caster and target switch positions after spell",
 		"Geyser lifts caster 50’ in air until start of next turn",
 		"All within 60’ saves vs Wis 15 or drops whatever they are holding",
+		"Literally nothing happens",
+		"The next time the player reaches 0 HP, heal to max HP & gain temp HP equal to max HP",
+		"Gain MASSIVE muscles for 24 hours. STR +5",
+		"Poof! You're suddenly super attractive for 24 hours! CHR +5",
+		"Player can't taste or smell anything for 24 hours.",
+		"A dragon egg spawns wherever the spell was centered/targeted. Dragon color based on spell type.",
+		"Everything tastes like salty penut butter for 24 hours. Cast on everyone in 60'.",
+		
 
 	]
 	
@@ -128,7 +136,7 @@ function get_d100_effects()
 			break;
 		}
 	}
-	var output = "Rolled a d" + d100_effects.effects.length + " and got a " +(d100_effects.old_key+1);
+	var output = "Rolled a d" + d100_effects.effects.length + " and got a <strong>" +(d100_effects.old_key+1) + "</strong>";
 	output += "<br>"
 	output += "<em>" + d100_effects.effects[fxNum] + "</em>"
 

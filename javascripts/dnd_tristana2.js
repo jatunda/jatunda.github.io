@@ -19,3 +19,10 @@ function add_hp(n)
     var newHP = currHP + n;
     document.getElementById("hp_display").innerHTML = newHP;
 }
+
+function add_mp(n)
+{
+    var currMP = parseInt(document.getElementById("mp_display").innerHTML);
+    var newMP = currMP + n;
+    document.getElementById("mp_display").innerHTML = newMP;
+}
