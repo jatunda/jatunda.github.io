@@ -22,7 +22,7 @@ nav {
 	color:#222;
 	background-color:#ccc;
 	width: 100%;
-	padding: 10px;
+	/*padding: 10px;*/
 }
 
 #main_content {
@@ -83,17 +83,17 @@ html {
 }
 
 .affix {
-  top: 0;
-  width: 100%;
+	top: 0;
+	width: 100%;
 }
 
 .affix-top {
-  width: 100%;
+	width: 100%;
 }
 
 .affix-bottom {
-  position: absolute;
-  width: 100%;  
+	position: absolute;
+	width: 100%;  
 }
 
 .no-margin {
@@ -133,8 +133,43 @@ html {
 }
 
 .card-header .fa {
-  transition: .3s ;
+	transition: .3s ;
 }
 .card-header .collapsed .fa {
-  transform: rotate(-90deg);
+	transform: rotate(-90deg);
+}
+
+#nav-col {
+	background-color: #bbb;
+	/*margin: 10px;*/
+	/*margin-right: 100px;*/
+	padding:0px;
+}
+
+.tab-pane {
+	margin:10px;
+}
+
+#roll-answer-wrapper {
+	/*each line is 24px, add 20 for padding*/
+	/*min-height: 120px;*/
+	/*min-height: 96px;*/
+	min-height: 116px;
+	position:relative;
+	box-sizing: border-box;
+	padding:10px;
+
+}
+
+#roll-answer {
+	/*min-height: 120px;*/
+	/*width: 100%;*/
+	/*background-color: #f00;*/
+	clear:both;
+	position:absolute;
+	padding-right: 20px;
+	top:50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
 }

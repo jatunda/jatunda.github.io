@@ -60,7 +60,7 @@
   <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner container">
       <div class="row">
-        <div class="col-md-3 col-lg-2">
+        <div id="nav-col" class="col-md-3 col-lg-2 ">
 
           <ul class="nav" role="tablist">
             <li class="nav-item col-3 col-sm-4 col-md-12 text-center nopadding">
@@ -77,7 +77,7 @@
 
 
 
-        <div class="tab-content col-md-9 col-lg-10">
+        <div class="tab-content col-md-9 col-lg-10 ">
           <div class="tab-pane" id="AboutTab">          
             <h3>Introduction</h3>
             <p>
@@ -502,10 +502,10 @@
               <div class="card">
                 <div class="card-body ">
                   <div class=" wrapper text-center align-items-center justify-content-center justify-content-md-center">
-                    <button class=" btn-lg btn-primary float-md-left" onclick="document.getElementById('roll_answer').innerHTML = get_d100_effects()">Wild Magic</button>
+                    <button class=" btn-lg btn-primary float-md-left" onclick="document.getElementById('roll-answer').innerHTML = get_d100_effects()">Wild Magic</button>
                     <div class="" style="height:10px;clear:both;"></div>
-                    <div class="text-center text-md-left">
-                      <div id="roll_answer" class="" style="clear:both;">
+                    <div id="roll-answer-wrapper" class="border rounded text-center text-md-left">
+                      <div id="roll-answer" class="w-100" style="">
                         Click a button to roll<br><em>~Magic~</em>
                       </div>
                     </div>
