@@ -1,6 +1,7 @@
 var points = 0;
 var pps = 0;
 var barVal = 0;
+var msUntilNextTick = 30;
 
 function addPoint() {
   points += 1;
@@ -52,27 +53,40 @@ function onClick() {
   console.log("onClick")
 }
 
-function createAction(actionName, func) {
-  console.log(actionName);
-  console.log(func)
+function createAction(actionName, func, ...funcArgs) {
   
+  var onclickText = func.name + "(" ;
+  for(var i = 0; i < funcArgs.length; i++) {
+    if (i != 0) {
+      onclickText += ","
+    }
+    onclickText += funcArgs[i]
+  }
+  onclickText += ")";
+  console.log(onclickText)
+
   $("#actionDiv").append(function() {
-    const card = `<div class="card">
+    return `<div class="card">
       <div class="card-body">
         <h5 class="card-title">` + actionName + `</h5>
         <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
         <p class="card-text">example card text here<br>press a,s,d to move the bar</p>
-        <button type="button" class="btn btn-outline-primary" onclick="` + func.name + "(" + ")" + `">add point</button>
+        <button type="button" class="btn btn-primary" onclick="` + onclickText + `" disabled>add point</button>
       </div>
     </div>`
-    return card
+    //return card
   })
 }
 
 updateDisplay();
 createAction("boop", addPoint);
 
-window.setInterval(function () {
-  points += pps / 10;
+function tick() {
+  points += pps / (1000 / msUntilNextTick);
   updateDisplay();
-}, 100);
+  window.setTimeout(tick, msUntilNextTick)
+}
+
+
+
+tick();
