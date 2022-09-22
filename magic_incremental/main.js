@@ -71,7 +71,7 @@ function createAction(actionName, func, ...funcArgs) {
         <h5 class="card-title">` + actionName + `</h5>
         <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
         <p class="card-text">example card text here<br>press a,s,d to move the bar</p>
-        <button type="button" class="btn btn-primary" onclick="` + onclickText + `" disabled>add point</button>
+        <button type="button" class="btn btn-primary" onclick="` + onclickText + `" >add point</button>
       </div>
     </div>`
     //return card
@@ -79,7 +79,7 @@ function createAction(actionName, func, ...funcArgs) {
 }
 
 updateDisplay();
-createAction("boop", addPoint);
+createAction("addPoint", addPoint);
 
 function tick() {
   points += pps / (1000 / msUntilNextTick);
