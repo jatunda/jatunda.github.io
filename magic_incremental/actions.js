@@ -1,43 +1,59 @@
-
-
-
-
-
-window.beg = function beg() {
-    consumables["Gold"]["curr"] += 1;
+function beg() {
+  consumables["Gold"]["curr"] += 1;
 }
-window.invest = function invest() {
-    consumables.Gold.delta += 0.01;
+function steal() {
+  consumables.Gold.curr += 5;
+}
+function invest() {
+  consumables.Gold.delta += 0.01;
 }
 
 var actions = {
-    Beg: beg,
-    Invest: invest,
+  Beg: {
+    func: beg,
+    subtitle: null,
+    desc: "Begging isn't the prettiest of jobs, but at least it's honorable.",
+  },
+  "Petty Theft": {
+    func: steal,
+    subtitle: "shhh",
+    desc: "Sinful, risky, and faster than begging.",
+  },
+  Invest: {
+    func: invest,
+    subtitle: null,
+    desc: "A penny saved is a penny earned.... eventually.",
+  },
 };
 
-function createAction(actionName, func, ...funcArgs) {
-  
-    var onclickText = func.name + "(" ;
-    for(var i = 0; i < funcArgs.length; i++) {
-      if (i != 0) {
-        onclickText += ","
-      }
-      onclickText += funcArgs[i]
+// TODO: edit this to be... prettier? idk
+function createAction(actionName, actionObj, ...funcArgs) {
+  func = actionObj.func;
+  var onclickText = func.name + "(";
+  for (var i = 0; i < funcArgs.length; i++) {
+    if (i != 0) {
+      onclickText += ",";
     }
-    onclickText += ")";
-    console.log(onclickText)
-  
-    $("#actionDiv").append(function() {
-      return `<div class="card">
-        <div class="card-body">
-          <h5 class="card-title">` + actionName + `</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">example card text here<br>press a,s,d to move the bar</p>
-          <button type="button" class="btn btn-primary" onclick="` + onclickText + `" >add point</button>
-        </div>
-      </div>`
-      //return card
-    })
+    onclickText += funcArgs[i];
   }
+  onclickText += ")";
 
-//createAction("addPoint", addPoint);
+  $("#actionDiv").append(function () {
+    return (
+      `<div class="card">
+        <div class="card-body">` +
+        `<button type="button" class="btn btn-primary fs-5" onclick="` + onclickText +`" >` + actionName+`</button>`+
+
+          //`<h5 class="card-title">` + actionName + `</h5>` +
+          (actionObj.subtitle == null ? `<h6></h6>`: `<h6 class="card-subtitle my-2 text-muted">` + actionObj.subtitle + `</h6>`) +
+          `<div class="card-text">` + actionObj.desc +`</div>` +
+        `</div>
+      </div>`
+    );
+  });
+}
+
+_.forEach(actions, function (actionObj, actionName) {
+  createAction(actionName, actionObj);
+});
+
