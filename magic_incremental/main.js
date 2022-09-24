@@ -16,14 +16,15 @@ function updateDisplay() {
 }
 
 
-
+//TODO: autogenerate actions, and have the buttons linked the the actual functions
+//TODO: autogenerate/update DOM for all the consumables and abilities and skills. 
 
 
 function tick() {
   updateDisplay();
   window.setTimeout(tick, msUntilNextTick)
-  beg();
-  console.log(consumables.Gold.curr)
+  beg(); 
+  //console.log(consumables.Gold.curr)
 }
 
 $(function(){
