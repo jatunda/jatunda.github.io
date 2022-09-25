@@ -72,7 +72,8 @@ function updateDisplay() {
 //TODO: deltaTick upgrades: 
 //    make deltatick cheatproof & accurate. use Date.now() to calculate elapsed time and calc delta based on that
 //    deltaTick calculations affected by "gamespeed" variable
-//TODO: figure out how to display delta (gold/s etc.)
+//TODO: figure out how to display delta (gold/s etc.). (generate & update)
+
 
 
 /** 
