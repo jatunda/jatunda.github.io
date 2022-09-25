@@ -1,15 +1,7 @@
-let ticksPerSecond = 1;
-let msUntilNextTick = Math.floor(1000 / ticksPerSecond);
-let fps = 120;
-
-
-//TODO: grey out actions based on some canDoAction() function
-//TODO: hiding consumables, skills, abilities based on whether they've ever been activated
-//TODO: deltaTick upgrades:
-//    make deltatick cheatproof & accurate. use Date.now() to calculate elapsed time and calc delta based on that
-//    deltaTick calculations affected by "gamespeed" variable
-//TODO: figure out how to display delta (gold/s etc.). (generate & update)
-//TODO: edit createAction to be more programmatic
+// TODO: hiding consumables, skills, abilities based on whether they've ever been activated
+// TODO: figure out how to display delta (gold/s etc.). (generate & update)
+// TODO: edit createAction to be more programmatic
+// TODO: createAction also makes it so every action calls setDirty()
 
 /**
  * TODO: (idea) make a split between slow consumables (gold, potions) & 'fast' consumables? (mana).
@@ -18,10 +10,19 @@ let fps = 120;
  *
  * */
 
+let ticksPerSecond = 1;
+let msUntilNextTick = Math.floor(1000 / ticksPerSecond);
+let fps = 120;
+let gameSpeed = 1;
+
+let previousDeltaTickTime = Date.now();
 function deltaTick() {
-  applyDeltas();
+  let newDate = Date.now();
+  let seconds = (newDate - previousDeltaTickTime) / 1000;
+  previousDeltaTickTime = newDate;
+  applyDeltas(seconds * gameSpeed);
   window.setTimeout(deltaTick, msUntilNextTick);
-  dirty = true;
+  setDirty();
 }
 
 function tick() {
@@ -31,11 +32,11 @@ function tick() {
 
 // actual start of everything
 $(function () {
-  console.log("starting...");
+  console.log('starting...');
   start = Date.now();
 
   generateDisplays();
-  console.log("finished generating in " + (Date.now() - start) + "ms");
+  console.log('finished generating in ' + (Date.now() - start) + 'ms');
   updateDisplay();
   tick();
   deltaTick();

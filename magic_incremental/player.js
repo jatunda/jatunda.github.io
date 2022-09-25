@@ -20,15 +20,15 @@ _.forEach(skillNames, function(value) {
     skills[value] = {curr: 0, max: Infinity, delta:0};
 });
 
-function applyDeltas() {
+function applyDeltas(seconds) {
     _.forEach(consumableNames, function(value) {
-        consumables[value].curr += consumables[value].delta;
+        consumables[value].curr += consumables[value].delta * seconds;
     });
     _.forEach(abilityNames, function(value) {
-        abilities[value].curr += abilities[value].delta;
+        abilities[value].curr += abilities[value].delta * seconds;
     });
     _.forEach(skillNames, function(value) {
-        skills[value].curr += skills[value].delta;
+        skills[value].curr += skills[value].delta * seconds;
     });
 }
 
