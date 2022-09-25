@@ -1,67 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Magic Incremental</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
 
-    <link rel="stylesheet" type="text/css" href="magic_incremental/style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Magic Incremental</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 
-  <body>
-    <div>
-      <nav class="py-2 bg-light border-bottom">
-        <div class="container d-flex flex-wrap">
-          <ul class="nav me-auto align-items-center">
-            <li class="nav-item">
-              <a href="#" class="nav-link link-dark px-3 active fs-4"
-                >Magic Incremental</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link link-dark px-2 active">v0.0.1</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <div class="container p-2">
-        <div class="container" id="consumablesDisplay"></div>
-        <div class="container"id="abilitiesDisplay"></div>
-        <div class="container"id="skillsDisplay"></div>
+  <link rel="stylesheet" type="text/css" href="magic_incremental/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+  </script>
+</head>
+
+<body>
+  <div>
+    <nav class="py-2 bg-light border-bottom">
+      <div class="container d-flex flex-wrap">
+        <ul class="nav me-auto align-items-center">
+          <li class="nav-item">
+            <a href="#" class="nav-link link-dark px-3 active fs-4">Magic Incremental</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link link-dark px-2 active">v0.0.1</a>
+          </li>
+        </ul>
       </div>
-      <div class="container p-2">
-        <div class="progress">
-          <div
-            class="progress-bar"
-            role="progressbar"
-            style="width: 100%"
-          ></div>
-        </div>
-      </div>
-      <div class="container p-2">
-        <div id="actionDiv"></div>
+    </nav>
+    <div class="container p-2">
+      <div class="container" id="consumablesDisplay"></div>
+      <div class="container" id="abilitiesDisplay"></div>
+      <div class="container" id="skillsDisplay"></div>
+    </div>
+    <div class="container p-2">
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: 100%"></div>
       </div>
     </div>
+    <div class="container p-2">
+      <div id="actionDiv"></div>
+    </div>
+  </div>
 
-    <script src="js/lodash.js"></script>
-    <script src="js/mousetrap.min.js"></script>
-    <script src="magic_incremental/player.js"></script>
-    <script src="magic_incremental/actions.js"></script>
-    <script src="magic_incremental/display.js"></script>
-    <script src="magic_incremental/main.js"></script>
-    <script src="magic_incremental/keybinds.js"></script>
-  </body>
+  <script src="js/lodash.js"></script>
+  <script src="js/mousetrap.min.js"></script>
+  <script type="module" src="magic_incremental/player.js"></script>
+  <script type="module" src="magic_incremental/actions.js"></script>
+  <script type="module" src="magic_incremental/display.js"></script>
+  <script type="module" src="magic_incremental/main.js"></script>
+  <script type="module" src="magic_incremental/keybinds.js"></script>
+</body>
+
 </html>

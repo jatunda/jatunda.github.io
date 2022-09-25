@@ -1,13 +1,11 @@
-//import _ from "../js/lodash.js";
-
 
 
 var consumableNames = ["Gold","Mana"]
 var abilityNames = ["Strength", "Constitution", "Agility", "Dexterity", "Fortitude", "Intelligence", "Wisdom", "Spirit", "Charisma", "Luck"]
 var skillNames = ["Melee", "Arcana"]
-var consumables = {}
-var abilities = {}
-var skills = {}
+export var consumables = {}
+export var abilities = {}
+export var skills = {}
 
 
 _.forEach(consumableNames, function(value) {
@@ -20,7 +18,7 @@ _.forEach(skillNames, function(value) {
     skills[value] = {curr: 0, max: Infinity, delta:0};
 });
 
-function applyDeltas(seconds) {
+export function applyDeltas(seconds) {
     _.forEach(consumableNames, function(value) {
         consumables[value].curr += consumables[value].delta * seconds;
     });

@@ -8,6 +8,9 @@
  *
  * */
 
+import { generateDisplays, updateDisplay, setDirty } from './display.js';
+import { applyDeltas } from './player.js';
+
 let ticksPerSecond = 1;
 let msUntilNextTick = Math.floor(1000 / ticksPerSecond);
 let fps = 120;
@@ -31,7 +34,7 @@ function tick() {
 // actual start of everything
 $(function () {
   console.log('starting...');
-  start = Date.now();
+  let start = Date.now();
 
   generateDisplays();
   console.log('finished generating in ' + (Date.now() - start) + 'ms');
