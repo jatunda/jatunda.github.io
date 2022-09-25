@@ -1,8 +1,6 @@
 // TODO: hiding consumables, skills, abilities based on whether they've ever been activated
 // TODO: figure out how to display delta (gold/s etc.). (generate & update)
-// TODO: edit createAction to be more programmatic
-// TODO: createAction also makes it so every action calls setDirty()
-
+// TODO: make numbers prettier (no more than 2 places after decimal)
 /**
  * TODO: (idea) make a split between slow consumables (gold, potions) & 'fast' consumables? (mana).
  * reasoning: fast consumables will fill up and down over and over, and a bar is a better representation,

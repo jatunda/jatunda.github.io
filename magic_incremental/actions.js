@@ -26,31 +26,27 @@ var actions = {
   },
 };
 
-// TODO: edit this to be more programmatic.
+
+// TODO: move to display?
 function createAction(actionName, actionObj, ...funcArgs) {
-  func = actionObj.func;
-  var onclickText = func.name + "(";
-  for (var i = 0; i < funcArgs.length; i++) {
-    if (i != 0) {
-      onclickText += ",";
-    }
-    onclickText += funcArgs[i];
-  }
-  onclickText += ")";
-
-  $("#actionDiv").append(function () {
-    return (
-      `<div class="card">
-        <div class="card-body">` +
-        `<button type="button" class="btn btn-primary fs-5" onclick="` + onclickText +`" >` + actionName+`</button>`+
-
-          //`<h5 class="card-title">` + actionName + `</h5>` +
-          (actionObj.subtitle == null ? `<h6></h6>`: `<h6 class="card-subtitle my-2 text-muted">` + actionObj.subtitle + `</h6>`) +
-          `<div class="card-text">` + actionObj.desc +`</div>` +
-        `</div>
-      </div>`
-    );
-  });
+  $("#actionDiv").append(
+    $('<div class="card"></div>').append(
+      $('<div class="card-body"></div>').append(
+        $('<button type="button" class="btn btn-primary fs-5"></button>')
+          .click(function() {
+            actionObj.func.apply(actionObj, funcArgs);
+            setDirty();
+          })
+          .append(actionName)
+      ).append(
+        actionObj.subtitle == null ? 
+          `<h6></h6>`: 
+          `<h6 class="card-subtitle my-2 text-muted">` + actionObj.subtitle + `</h6>`
+      ).append(
+        `<div class="card-text">` + actionObj.desc +`</div>`
+      )
+    )
+  )
 }
 
 _.forEach(actions, function (actionObj, actionName) {
