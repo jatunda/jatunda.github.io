@@ -1,37 +1,43 @@
 import { consumables, abilities, skills } from './player.js';
-import {actionsData } from './actions.js'
+import { actionsData } from './actions.js';
 
-function createAction(actionName, actionObj, ...funcArgs) {
+function generateAction(actionName, actionObj, ...funcArgs) {
   $('#actionDiv').append(
-    $('<div class="card"></div>').append(
-      $('<div class="card-body"></div>')
-        .append(
-          $('<button type="button" class="btn btn-primary fs-5"></button>')
-            .click(function () {
-              actionObj.func.apply(actionObj, funcArgs);
-              setDirty();
-            })
-            .append(actionName)
-        )
-        .append(
-          actionObj.subtitle == null
-            ? `<h6></h6>`
-            : `<h6 class="card-subtitle my-2 text-muted">` +
-                actionObj.subtitle +
-                `</h6>`
-        )
-        .append(`<div class="card-text">` + actionObj.desc + `</div>`)
+    $('<div class="col"></div>').append(
+      $('<div class="card"></div>').append(
+        $('<div class="card-body"></div>')
+          .append(
+            $('<button type="button" class="btn btn-primary fs-6"></button>')
+              .click(function () {
+                actionObj.func.apply(actionObj, funcArgs);
+                setDirty();
+              })
+              .append(actionName)
+          )
+          .append(
+            actionObj.subtitle == null
+              ? `<h6></h6>`
+              : `<h6 class="card-subtitle text-muted mt-1">` +
+                  actionObj.subtitle +
+                  `</h6>`
+          )
+          .append(
+            `<div class="card-text" style="font-style:italic">` +
+              actionObj.desc +
+              `</div>`
+          )
+      )
     )
   );
 }
 
-function createActions() {
+function generateActionsDisplay() {
   _.forEach(actionsData, function (actionObj, actionName) {
-    createAction(actionName, actionObj);
+    generateAction(actionName, actionObj);
   });
 }
 
-export function generateDisplays() {
+function generateConsumablesDisplay(){
   $('#consumablesDisplay').append(
     $('<p></p>').html('Consumables').addClass('fs-4')
   );
@@ -41,7 +47,9 @@ export function generateDisplays() {
       $('<div></div>').html(consumableName).attr('id', consumableName)
     );
   });
+}
 
+function generateAbilitiesDisplay() {
   $('#abilitiesDisplay').append(
     $('<p></p>').html('Abilities').addClass('fs-4')
   );
@@ -51,7 +59,9 @@ export function generateDisplays() {
       $('<div></div>').html(abilityName).attr('id', abilityName)
     );
   });
+}
 
+function generateSkillsDisplay() {
   $('#skillsDisplay').append($('<p></p>').html('Skills').addClass('fs-4'));
   $('#skillsDisplay').append($('<ul></ul>'));
   _.forEach(skills, function (skillObj, skillName) {
@@ -59,8 +69,13 @@ export function generateDisplays() {
       $('<div></div>').html(skillName).attr('id', skillName)
     );
   });
+}
 
-  createActions();
+export function generateDisplays() {
+  generateConsumablesDisplay();
+  generateAbilitiesDisplay();
+  generateSkillsDisplay();
+  generateActionsDisplay();
 }
 
 let dirty = false;

@@ -5,7 +5,7 @@
  * TODO: (idea) make a split between slow consumables (gold, potions) & 'fast' consumables? (mana).
  * reasoning: fast consumables will fill up and down over and over, and a bar is a better representation,
  * because you mostly care to know roughly how much you have.
- *
+ * 
  * */
 
 import { generateDisplays, updateDisplay, setDirty } from './display.js';

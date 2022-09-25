@@ -14,12 +14,12 @@ export var actionsData = {
   Beg: {
     func: beg,
     subtitle: null,
-    desc: "Begging isn't the prettiest of jobs, but at least it's honorable.",
+    desc: "It ain't the prettiest of jobs, but money is money.",
   },
   "Petty Theft": {
     func: steal,
     subtitle: "shhh",
-    desc: "Sinful, risky, and faster than begging.",
+    desc: "Sinful, risky, and fast.",
   },
   Invest: {
     func: invest,

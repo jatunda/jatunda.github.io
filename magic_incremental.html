@@ -30,19 +30,23 @@
         </ul>
       </div>
     </nav>
-    <div class="container p-2">
-      <div class="container" id="consumablesDisplay"></div>
-      <div class="container" id="abilitiesDisplay"></div>
-      <div class="container" id="skillsDisplay"></div>
-    </div>
-    <div class="container p-2">
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: 100%"></div>
+
+    <div class="row p-2">
+
+      <div class="container p-2 col-3">
+
+        <div class="container" id="consumablesDisplay"></div>
+        <div class="container" id="abilitiesDisplay"></div>
+        <div class="container" id="skillsDisplay"></div>
+      </div> 
+      <div class="container p-3 col-9">
+        <!-- <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 100%"></div>
+        </div> -->
+        <div class = "row row-cols-1 row-cols-md-2 g-2" id="actionDiv"></div>
       </div>
     </div>
-    <div class="container p-2">
-      <div id="actionDiv"></div>
-    </div>
+
   </div>
 
   <script src="js/lodash.js"></script>
