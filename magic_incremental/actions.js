@@ -26,7 +26,7 @@ var actions = {
   },
 };
 
-// TODO: edit this to be... prettier? idk
+// TODO: edit this to be more programmatic.
 function createAction(actionName, actionObj, ...funcArgs) {
   func = actionObj.func;
   var onclickText = func.name + "(";
