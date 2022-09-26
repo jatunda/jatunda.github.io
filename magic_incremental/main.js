@@ -1,3 +1,4 @@
+// TODO: (in progress) abilities display show progress bars. 
 // TODO: hiding consumables, skills, abilities based on whether they've ever been activated
 // TODO: figure out how to display delta (gold/s etc.). (generate & update)
 // TODO: make numbers prettier (no more than 2 places after decimal)
@@ -7,8 +8,9 @@
  * because you mostly care to know roughly how much you have.
  * 
  * */
+// TODO: ability card padding kinda big? idk
 
-import { generateDisplays, updateDisplay, setDirty } from './display.js';
+import { updateDisplay, setDirty } from './display.js';
 import { applyDeltas } from './player.js';
 
 let ticksPerSecond = 1;
@@ -26,6 +28,8 @@ function deltaTick() {
   setDirty();
 }
 
+
+// TODO: move the entire updateDisplay logic/loop into display.js
 function tick() {
   updateDisplay();
   window.setTimeout(tick, 1000 / fps);
@@ -36,7 +40,6 @@ $(function () {
   console.log('starting...');
   let start = Date.now();
 
-  generateDisplays();
   console.log('finished generating in ' + (Date.now() - start) + 'ms');
   updateDisplay();
   tick();

@@ -26,6 +26,19 @@ export var actionsData = {
     subtitle: null,
     desc: "A penny saved is a penny earned.... eventually.",
   },
+  Channel: {
+    func: function(){
+      consumables.Mana.curr += 0.01;
+    },
+    subtitle: null,
+    desc: "Feel the mana around you.",
+  },
+  Train: {
+    func: function() {
+      abilities.Strength.curr += 1;
+    },
+    desc: "Feel the BURN",
+  },
 };
 
 

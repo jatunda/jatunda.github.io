@@ -1,6 +1,12 @@
 import { consumables, abilities, skills } from './player.js';
 import { actionsData } from './actions.js';
 
+// auto-generate displays when this module is loaded
+generateDisplays();
+
+
+// module functionality from here on out
+
 function generateAction(actionName, actionObj, ...funcArgs) {
   $('#actionDiv').append(
     $('<div class="col"></div>').append(
@@ -56,7 +62,15 @@ function generateAbilitiesDisplay() {
   $('#abilitiesDisplay').append($('<ul></ul>'));
   _.forEach(abilities, function (abilityObj, abilityName) {
     $('#abilitiesDisplay > ul').append(
-      $('<div></div>').html(abilityName).attr('id', abilityName)
+      $('<div class="d-flex" style="margin-bottom:-2px"></div>').append(
+        $('<div class="col"></div>').html(abilityName)
+      ).append(
+        $('<div class="col float-end text-end"></div>').attr('id', abilityName)
+      )
+    ).append(
+      $('<div class="progress" style="height:4px; margin-bottom:2px"></div>').append(
+        $('<div class="progress-bar" role="progressbar" style="width:50.5%"></div>')
+      )
     );
   });
 }
@@ -71,7 +85,7 @@ function generateSkillsDisplay() {
   });
 }
 
-export function generateDisplays() {
+function generateDisplays() {
   generateConsumablesDisplay();
   generateAbilitiesDisplay();
   generateSkillsDisplay();
@@ -108,7 +122,7 @@ export function updateDisplay() {
   _.forEach(abilities, function (abilityObj, abilityName) {
     // get by id
     // set innerHTML or whatever
-    $('#' + abilityName).html(abilityName + ': ' + abilityObj.curr);
+    $('#' + abilityName).html(abilityObj.curr);
   });
 
   _.forEach(skills, function (skillObj, skillName) {
@@ -117,3 +131,5 @@ export function updateDisplay() {
     $('#' + skillName).html(skillName + ': ' + skillObj.curr);
   });
 }
+
+
