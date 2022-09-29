@@ -1,5 +1,6 @@
 import { consumables, abilities, skills } from './player.js';
 import { actionsData } from './actions.js';
+import * as util from '../js/utility.js'
 
 // auto-generate displays when this module is loaded
 generateDisplays();
@@ -115,20 +116,20 @@ export function updateDisplay() {
     // get by id
     // set innerHTML or whatever
     $('#' + consumableName).html(
-      consumableName + ': ' + consumableObj.curr + '/' + consumableObj.max
+      consumableName + ': ' + util.displayFloat(consumableObj.curr) + '/' + util.displayFloat(consumableObj.max)
     );
   });
 
   _.forEach(abilities, function (abilityObj, abilityName) {
     // get by id
     // set innerHTML or whatever
-    $('#' + abilityName).html(abilityObj.curr);
+    $('#' + abilityName).html(util.displayFloat(abilityObj.curr));
   });
 
   _.forEach(skills, function (skillObj, skillName) {
     // get by id
     // set innerHTML or whatever
-    $('#' + skillName).html(skillName + ': ' + skillObj.curr);
+    $('#' + skillName).html(skillName + ': ' + util.displayFloat(skillObj.curr));
   });
 }
 

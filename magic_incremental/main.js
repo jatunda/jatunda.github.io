@@ -1,7 +1,6 @@
 // TODO: (in progress) abilities display show progress bars. 
 // TODO: hiding consumables, skills, abilities based on whether they've ever been activated
 // TODO: figure out how to display delta (gold/s etc.). (generate & update)
-// TODO: make numbers prettier (no more than 2 places after decimal)
 /**
  * TODO: (idea) make a split between slow consumables (gold, potions) & 'fast' consumables? (mana).
  * reasoning: fast consumables will fill up and down over and over, and a bar is a better representation,
@@ -37,7 +36,7 @@ function tick() {
 
 // actual start of everything
 $(function () {
-  console.log('starting...');
+  console.log('starting game...');
   let start = Date.now();
 
   console.log('finished generating in ' + (Date.now() - start) + 'ms');
