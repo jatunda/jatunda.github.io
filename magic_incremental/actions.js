@@ -1,5 +1,9 @@
 import {consumables, abilities, skills} from './player.js';
 
+window.beg = beg; // for debugging
+window.steal = steal;
+window.invest = invest; 
+
 function beg() {
   consumables["Gold"]["curr"] += 1;
 }
