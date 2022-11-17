@@ -7,7 +7,7 @@ export function setProgressBarPercent(progressBar, percentInDecimal) {
     percentInDecimal = clamp(percentInDecimal, 0, 1);
     let percent = (percentInDecimal * 100);
     progressBar.css("width", "" + percent + "%");
-}
+} 
 
 /**
  * clamps value between minimum and maximum value 
