@@ -1,0 +1,13 @@
+#scotlandyardimage {
+    width: 100%;
+}
+
+#main_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+#xreveallocation {
+    width: 40px;
+}
