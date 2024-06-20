@@ -88,7 +88,7 @@ function fillGraphs() {
     taxiGraph.addEdge(25, 38);
     taxiGraph.addEdge(25, 39);
     taxiGraph.addEdge(26, 39);
-    taxiGraph.addEdge(26, 37);
+    taxiGraph.addEdge(26, 27);
     taxiGraph.addEdge(27, 28);
     taxiGraph.addEdge(27, 40);
     taxiGraph.addEdge(28, 41);
