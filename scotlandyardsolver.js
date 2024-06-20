@@ -735,8 +735,6 @@ function fillCircleData() {
     circleData[199] = [621, 555];
 
     for (key in circleData) {
-        console.log(key);
-        console.log(circleData[key]);
         circleData[key][0] = circleData[key][0] / 788;
         circleData[key][1] = circleData[key][1] / 591;
     }
@@ -749,8 +747,6 @@ function scotlandyardsolver() {
 
     // Used to get all the locations for the circles. 
     //console.log(bigOutput);
-    console.log(syImg.width);
-    console.log(syImg.height);
 
     // clear old circles
     canvas.innerHTML = "";
@@ -776,7 +772,7 @@ function scotlandyardsolver() {
     // call our function that actually calculates possible locations
     var results = deduceMrXLocation(startPos, tickets);
 
-    // TODO: potentially mark map with startpos
+    // TODO: potentially mark map with startpos of Mr. X
 
     // debug output
     // document.getElementById("feedback").innerHTML =
@@ -784,9 +780,8 @@ function scotlandyardsolver() {
 
     // draw circles on the possible spaces
     for (node of results) {
-        drawCircle(...circleData[node]);
+        drawCircle(...circleData[node], node);
     }
-
 };
 
 // calculating which nodes mr. x can currently be at
@@ -817,20 +812,14 @@ function deduceMrXLocation(startPos, tickets) {
             var nodeNeighbors = graph.getNeighboors(j)
             if (nodeNeighbors == null) {
                 // do nothing
-                // this exists to preven trying to union an undefined object
+                // this exists to prevent trying to union an undefined set
             } else {
                 possibleNextLocations = possibleNextLocations.union(nodeNeighbors);
             }
         }
         currentLocations = possibleNextLocations;
     }
-
-
-
-
-
     return currentLocations;
-
 }
 
 function getFromDropdown(id) {
@@ -843,15 +832,23 @@ function getFromDropdown(id) {
 
 var syImg = document.getElementById("scotlandyardimage");
 var canvas = document.getElementById("myCanvas");
-function drawCircle(x, y) {
+var magentaFilter = "invert(56%) sepia(98%) saturate(7488%) hue-rotate(295deg) brightness(116%) contrast(135%)  opacity(45%)";
+var yellowFilter = "invert(81%) sepia(88%) saturate(1360%) hue-rotate(355deg) brightness(455%) contrast(106%) opacity(60%)";
+var grayFilter = "invert(54%) sepia(0%) saturate(1000%) hue-rotate(224deg) brightness(45%) contrast(87%)  opacity(60%)";
+
+function drawCircle(x, y, node) {
     canvas.style.position = "absolute";
     canvas.style.left = syImg.offsetLeft + "px";
     canvas.style.top = syImg.offsetTop + "px";
     canvas.style.width = syImg.width + "px";
     canvas.style.height = syImg.height + "px";
-    canvas.style.pointerEvents = "none"
+    // canvas.style.pointerEvents = "none"
+
+
+
 
     let ring = document.createElement("img");
+    ring.id = "ring" + node;
     // ring.style.zIndex = 1;
     ring.src = "circle-64.png";
     ring.style.position = "absolute";
@@ -859,13 +856,37 @@ function drawCircle(x, y) {
     var diameter = 40 * ratio;
     ring.style.width = diameter + "px";
     ring.style.height = diameter + "px";
-    ring.style.pointerEvents = "none"
-    ring.style.filter = "invert(56%) sepia(98%) saturate(7488%) hue-rotate(295deg) brightness(116%) contrast(135%) opacity(45%)";
+    // ring.style.pointerEvents = "none"
+    
+    ring.style.filter = magentaFilter;
+    ring.dataset.numClicks = 0;
     x = x*syImg.width;
     y = y*syImg.height;
     ring.style.left = (x - diameter / 2) + "px"
     ring.style.top = (y - diameter / 2) + "px"
+    ring.addEventListener("click",() => ringClick(ring, node));
+
     canvas.appendChild(ring);
+}
+
+function ringClick(ring, node) {
+    ring.dataset.numClicks = parseInt(ring.dataset.numClicks) + 1;
+    console.log("clicked on node " + node + " numclicks:" + ring.dataset.numClicks);
+
+    if(ring.dataset.numClicks >= 3 ) {
+        ring.dataset.numClicks = 0;
+    }
+
+    if(ring.dataset.numClicks == 0) {
+        console.log("magenat")
+        ring.style.filter = magentaFilter;
+    } else if (ring.dataset.numClicks == 1) {
+        console.log("yellow")
+        ring.style.filter = yellowFilter;
+    } else {
+        console.log("gray")
+        ring.style.filter = grayFilter;
+    }
 }
 
 function getRandomInt(max) {
