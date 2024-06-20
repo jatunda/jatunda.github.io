@@ -741,7 +741,7 @@ function fillCircleData() {
 }
 fillCircleData()
 
-
+var uid = null;
 // main function
 function scotlandyardsolver() {
 
@@ -761,6 +761,7 @@ function scotlandyardsolver() {
     tickets[4] = getFromDropdown("ticket5");
     tickets[5] = getFromDropdown("ticket6");
 
+
     // input verification
     if (isNaN(startPos) || startPos < 1 || startPos > 199) {
         document.getElementById("feedback").innerHTML = "must be a valid number between 1 and 199. "
@@ -769,10 +770,14 @@ function scotlandyardsolver() {
         document.getElementById("feedback").innerHTML = ""
     }
 
+    // console.log(uidToPositionAndTickets(getUID(startPos, tickets)));
+    // get uid
+    var uid = getUID(startPos, tickets);
+
     // call our function that actually calculates possible locations
     var results = deduceMrXLocation(startPos, tickets);
 
-    // TODO: potentially mark map with startpos of Mr. X
+    // TODO: potentially mark map with startPos of Mr. X
 
     // debug output
     // document.getElementById("feedback").innerHTML =
@@ -782,7 +787,57 @@ function scotlandyardsolver() {
     for (node of results) {
         drawCircle(...circleData[node], node);
     }
+
+
+    // save results
+    localStorage.setItem(uid, JSON.stringify([...results]));
 };
+
+function saveList(uid, uidPrefix, nodeList) {
+    localStorage.setItem(uidPrefix + uid, JSON.stringify(nodeList));
+}
+
+function saveSet(uid, uidPrefix, nodeSet) {
+    localStorage.setItem(uidPrefix + uid, JSON.stringify([...nodeSet]));
+}
+
+function loadList(uid, uidPrefix) {
+    oldResultsList = JSON.parse(localStorage.getItem(uidPrefix + uid));
+    if(oldResultsList == null) {
+        return null;
+    }
+    return (oldResultsList);
+}
+
+function loadSet(uid, uidPrefix) {
+    oldResultsList = JSON.parse(localStorage.getItem(uidPrefix + uid));
+    if(oldResultsList == null) {
+        return null;
+    }
+    return new Set(oldResultsList);
+}
+
+function saveDataRemoveNode(uid, uidPrefix, nodeToRemove) {
+    // load
+    nodeSet = loadSet(uid, uidPrefix);
+    if(nodeSet == null) return;
+    // edit
+    nodeSet.delete(nodeToRemove);
+    // save
+    saveSet(uid, uidPrefix, nodeSet);
+}
+
+function saveDataAddNode(uid, uidPrefix, nodeToAdd) {
+    // load
+    nodeSet = loadSet(uid, uidPrefix);
+    if(nodeSet == null) {
+        nodeSet = new Set();
+    }
+    // edit
+    nodeSet.add(nodeToAdd);
+    // save
+    saveSet(uid, uidPrefix, nodeSet);
+}
 
 // calculating which nodes mr. x can currently be at
 function deduceMrXLocation(startPos, tickets) {
@@ -830,6 +885,42 @@ function getFromDropdown(id) {
 }
 
 
+function getUID(startPos, tickets) {
+    var output = "" + startPos;
+    for(i in tickets) {
+        if(tickets[i] == "--") {
+            return output;
+        } else if (tickets[i] == "Black") {
+            output += "X";
+        } else {
+            output += tickets[i][0];
+        }
+    }
+    return output;
+}
+
+function uidToPositionAndTickets(uid) {
+    var pos = parseInt(uid);
+    var tickets = [];
+    for(i in uid) {
+        char = uid[i];
+        if(char == "T") {
+            tickets.push("Taxi");
+        } else if (char == "B") {
+            tickets.push("Bus");
+        } else if (char == "U") {
+            tickets.push("UG");
+        } else if (char == "X") {
+            tickets.push("Black");
+        }
+    }
+    while(tickets.length < 6) {
+        tickets.push("--");
+    }
+    return [pos, tickets];
+}
+
+
 var syImg = document.getElementById("scotlandyardimage");
 var canvas = document.getElementById("myCanvas");
 var magentaFilter = "invert(56%) sepia(98%) saturate(7488%) hue-rotate(295deg) brightness(116%) contrast(135%)  opacity(45%)";
@@ -837,15 +928,13 @@ var yellowFilter = "invert(81%) sepia(88%) saturate(1360%) hue-rotate(355deg) br
 var grayFilter = "invert(54%) sepia(0%) saturate(1000%) hue-rotate(224deg) brightness(45%) contrast(87%)  opacity(60%)";
 
 function drawCircle(x, y, node) {
+    // TODO - resize canvas, redraw rings on resizing window
     canvas.style.position = "absolute";
     canvas.style.left = syImg.offsetLeft + "px";
     canvas.style.top = syImg.offsetTop + "px";
     canvas.style.width = syImg.width + "px";
     canvas.style.height = syImg.height + "px";
     // canvas.style.pointerEvents = "none"
-
-
-
 
     let ring = document.createElement("img");
     ring.id = "ring" + node;
@@ -871,21 +960,25 @@ function drawCircle(x, y, node) {
 
 function ringClick(ring, node) {
     ring.dataset.numClicks = parseInt(ring.dataset.numClicks) + 1;
-    console.log("clicked on node " + node + " numclicks:" + ring.dataset.numClicks);
 
     if(ring.dataset.numClicks >= 3 ) {
         ring.dataset.numClicks = 0;
     }
 
+    // remove from savedata
+    saveDataRemoveNode(uid, "M", node);
+    saveDataRemoveNode(uid, "Y", node);
+    saveDataRemoveNode(uid, "G", node);
+
     if(ring.dataset.numClicks == 0) {
-        console.log("magenat")
         ring.style.filter = magentaFilter;
+        saveDataAddNode(uid, "M", node);
     } else if (ring.dataset.numClicks == 1) {
-        console.log("yellow")
         ring.style.filter = yellowFilter;
+        saveDataAddNode(uid, "Y", node);
     } else {
-        console.log("gray")
         ring.style.filter = grayFilter;
+        saveDataAddNode(uid, "G", node);
     }
 }
 
@@ -916,9 +1009,24 @@ $(function () {
     syImg = document.getElementById("scotlandyardimage");
     canvas = document.getElementById("myCanvas");
 
+    //TODO remove this :)
+    localStorage.clear();
+
 })
 
 
 // TODO: after visual output is created, make a thing where i can just click next and it shows all the connections of that node (to check that all the data i input was correct)
 
 // TODO: new feature set: ability to mark certain futures as impossible, then the computer remembers it for when we input the next ticket, then the next deduce! will show purple for unmarked futures, and gray for futures only reachable through "impossible" spots
+// Todo: button to reset marks? 
+
+// onclick: save all magenta/yellow/gray for each uid 
+// when pressing deduce, 
+//// if uid not found, create a full magenta save
+//// use the closest preceding uid that isn't all magenta
+//// create neighbor sets for magenta, yellow, gray
+//// then do set subtraction. yellow -= magenta; gray -= (yellow + magenta);
+//// then, render the 3 sets
+
+
+// todo: no more deduce button? it just runs whenever you change an input field?
