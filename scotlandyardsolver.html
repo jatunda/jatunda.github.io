@@ -64,11 +64,26 @@
     <div id="main_content_wrap" class="outer">
         <div>
             <section id="main_content" class="inner container">
-                <div><img id="scotlandyardimage" src="Scotland yard map.png">
+
+                <div>
+                    <div id="instructions">
+                        <b>Instructions: </b>Input the info Mr. X has left behind, and see where he could be.
+                        <br>
+                        Click on circles to mark them as improbable (yellow) and impossible (gray).
+                        </br>
+                        Future deductions will show which positions required an improbable or impossible path.
+                        <br>
+                        Right click to mark Mr. X's position.
+                        </br>
+                        Press 1,2,3,4 to set tickets and backspace to remove.
+                    </div>
+
+
+                    <img id="scotlandyardimage" src="Scotland yard map.png">
                     <div style="position:absolute" id="myCanvas"></div>
                     <div>
                         <label for="xreveallocation">Mr. X's last revealed location (1-199): </label>
-                        <input type="text" id="xreveallocation"> 
+                        <input type="text" id="xreveallocation">
                         <p style="display:inline; color:red" id="feedback"></p>
                         <div>
                             Ticket 1: <select id="ticket1">
@@ -114,7 +129,8 @@
                                 <option value="Black">Black</option>
                             </select>
                         </div>
-                        <button onclick="scotlandyardsolver();">Deduce!</button>
+                        <button onclick="clearAllSavedDataButton()">Clear all Saved Data</button>
+                        <!-- <button onclick="scotlandyardsolver();">Deduce!</button> -->
 
                     </div>
 

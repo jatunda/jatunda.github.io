@@ -1,13 +1,19 @@
 #scotlandyardimage {
     width: 100%;
+    margin: 10px;
 }
 
 #main_content {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding:20px;
   }
 
 #xreveallocation {
     width: 40px;
+}
+
+#instructions {
+    text-align:center;
 }

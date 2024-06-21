@@ -29,16 +29,27 @@ class Graph {
 }
 
 
-// setting up all the graphs
+// global variables
 var taxiGraph = new Graph();
 var busGraph = new Graph();
 var ugGraph = new Graph();
 var ferryGraph = new Graph();
 var blackGraph = new Graph();
 
+var circleData = [];
+
+var uid = null; // set on load
+var syImg = null; // set on load
+var canvas = null; // set on load
+
+var magentaFilter = "invert(56%) sepia(98%) saturate(7488%) hue-rotate(295deg) brightness(116%) contrast(135%)  opacity(45%)";
+var yellowFilter = "invert(81%) sepia(88%) saturate(1360%) hue-rotate(355deg) brightness(455%) contrast(106%) opacity(60%)";
+var grayFilter = "invert(54%) sepia(0%) saturate(1000%) hue-rotate(224deg) brightness(45%) contrast(87%)  opacity(60%)";
+
+
+// filling in graphs
+fillGraphs();
 function fillGraphs() {
-
-
     // adding all edges to taxi graph
     taxiGraph.addEdge(1, 8);
     taxiGraph.addEdge(1, 9);
@@ -94,7 +105,6 @@ function fillGraphs() {
     taxiGraph.addEdge(28, 41);
     taxiGraph.addEdge(29, 41);
     taxiGraph.addEdge(29, 42);
-    taxiGraph.addEdge(29, 55);
     taxiGraph.addEdge(30, 42);
     taxiGraph.addEdge(31, 43);
     taxiGraph.addEdge(31, 44);
@@ -147,6 +157,7 @@ function fillGraphs() {
     taxiGraph.addEdge(57, 73);
     taxiGraph.addEdge(58, 74);
     taxiGraph.addEdge(58, 59);
+    taxiGraph.addEdge(58, 75);
     taxiGraph.addEdge(59, 75);
     taxiGraph.addEdge(59, 76);
     taxiGraph.addEdge(60, 76);
@@ -165,6 +176,7 @@ function fillGraphs() {
     taxiGraph.addEdge(66, 67);
     taxiGraph.addEdge(66, 82);
     taxiGraph.addEdge(67, 84);
+    taxiGraph.addEdge(67, 68);
     taxiGraph.addEdge(68, 69);
     taxiGraph.addEdge(68, 85);
     taxiGraph.addEdge(69, 86);
@@ -195,7 +207,6 @@ function fillGraphs() {
     taxiGraph.addEdge(83, 102);
     taxiGraph.addEdge(84, 85);
     taxiGraph.addEdge(85, 103);
-    taxiGraph.addEdge(86, 87);
     taxiGraph.addEdge(86, 103);
     taxiGraph.addEdge(86, 104);
     taxiGraph.addEdge(87, 88);
@@ -231,7 +242,6 @@ function fillGraphs() {
     taxiGraph.addEdge(107, 119);
     taxiGraph.addEdge(108, 117);
     taxiGraph.addEdge(108, 119);
-    taxiGraph.addEdge(108, 135);
     taxiGraph.addEdge(109, 110);
     taxiGraph.addEdge(109, 124);
     taxiGraph.addEdge(110, 111);
@@ -360,6 +370,7 @@ function fillGraphs() {
     taxiGraph.addEdge(176, 177);
     taxiGraph.addEdge(176, 189);
     taxiGraph.addEdge(178, 191);
+    taxiGraph.addEdge(178, 189);
     taxiGraph.addEdge(179, 191);
     taxiGraph.addEdge(180, 181);
     taxiGraph.addEdge(180, 193);
@@ -464,7 +475,6 @@ function fillGraphs() {
     busGraph.addEdge(128, 187);
     busGraph.addEdge(128, 199);
     busGraph.addEdge(133, 140);
-    busGraph.addEdge(133, 142);
     busGraph.addEdge(133, 157);
     busGraph.addEdge(140, 154);
     busGraph.addEdge(140, 156);
@@ -529,10 +539,8 @@ function fillGraphs() {
 
 }
 
-fillGraphs();
-
-
-var circleData = [];
+// the data for the visual location of each node
+fillCircleData();
 function fillCircleData() {
     circleData[1] = [110, 35];
     circleData[2] = [255, 38];
@@ -739,21 +747,18 @@ function fillCircleData() {
         circleData[key][1] = circleData[key][1] / 591;
     }
 }
-fillCircleData()
 
-var uid = null;
 // main function
-function scotlandyardsolver() {
+function scotlandYardSolver() {
 
-    // Used to get all the locations for the circles. 
-    //console.log(bigOutput);
+    uid = getInputUID();
 
-    [startPos, tickets] = updateUIDandGetInput();
+    if (!uid) {
+        return;
+    }
 
     // get the closest preceding uid that has at least some yellow or gray saved
     alteredPastUID = getAlteredPast(uid);
-
-    // TODO: potentially mark map with startPos of Mr. X
 
     // if no altered past
     if (alteredPastUID == null) {
@@ -762,31 +767,44 @@ function scotlandyardsolver() {
         startUID = alteredPastUID
     }
 
-    [magentaNodes, yellowNodes, grayNodes] = deduceMrXLocationWithColors(startUID, uid);
+    [magentaNodes, yellowNodes, grayNodes] = deduceMrXLocation(startUID, uid);
 
     // render the 3 sets
-    for (node of magentaNodes) {
-        drawCircle(...circleData[node], node, "M");
-    }
-    for (node of yellowNodes) {
-        drawCircle(...circleData[node], node, "Y");
-    }
-    for (node of grayNodes) {
-        drawCircle(...circleData[node], node, "G");
-    }
+    renderCircles(magentaNodes, yellowNodes, grayNodes);
 
     // save results
     saveSet(uid, "M", magentaNodes);
     saveSet(uid, "Y", yellowNodes);
     saveSet(uid, "G", grayNodes);
-
-    // todo: possibly save precalculated stuff and load?
-
 };
 
-function deduceMrXLocationWithColors(startUID, finalUID) {
+function renderCircles(magentaNodes, yellowNodes, grayNodes) {
+    
+    // clear old circles
+    var removeCount = 0;
+    for (i = 0; i < canvas.children.length; i++) {
+        if(canvas.children[i].id.includes("ring")) {
+            canvas.children[i].remove()
+            i--;
+            removeCount += 1;
+        }
+    }
 
-    console.log("from " + startUID + " to " + finalUID);
+    // render the 3 sets
+    for (node of magentaNodes ?? new Set()) {
+        drawCircle(...circleData[node], node, "M");
+    }
+    for (node of yellowNodes ?? new Set()) {
+        drawCircle(...circleData[node], node, "Y");
+    }
+    for (node of grayNodes ?? new Set()) {
+        drawCircle(...circleData[node], node, "G");
+    }
+}
+
+function deduceMrXLocation(startUID, finalUID, verbose = false) {
+
+    verbose ? console.log("from " + startUID + " to " + finalUID) : "";
     startUID += "";
 
     magentaNodes = loadSet(startUID, "M");
@@ -797,24 +815,22 @@ function deduceMrXLocationWithColors(startUID, finalUID) {
     if (magentaNodes == null && yellowNodes == null && grayNodes == null) {
         magentaNodes = new Set();
         magentaNodes.add(parseInt(startUID));
-        console.log("no memory found. starting with just " + parseInt(startUID));
+        verbose ? console.log("no memory found. starting with just " + parseInt(startUID)) : "";
         saveSet(startUID, "M", magentaNodes);
     }
 
     currUID = startUID + "";
-    console.log("entering loop with startUID " + currUID + " and finalUID " + finalUID);
+    verbose ? console.log("entering loop with startUID " + currUID + " and finalUID " + finalUID) : "";
+    
     // for every generation: 
     while (currUID.length < finalUID.length) {
         // for each color, create neighbor sets
         ticketChar = finalUID[currUID.length];
-        console.log("loop for uid " + currUID + ". Ticket is " + ticketChar);
+        verbose ? console.log("loop for uid " + currUID + ". Ticket is " + ticketChar) : "";
 
         futureMagentaNodes = getFutureNodes(magentaNodes, ticketChar);
         futureYellowNodes = getFutureNodes(yellowNodes, ticketChar);
         futureGrayNodes = getFutureNodes(grayNodes, ticketChar);
-
-        // TODO when merging this with the old deduction function, 
-        // make sure this can account for the case where there is no savedata
 
         // cull the nodes that are taken by a high priority color
         if (futureYellowNodes != null && futureMagentaNodes != null) {
@@ -830,7 +846,7 @@ function deduceMrXLocationWithColors(startUID, finalUID) {
         // next gen
         var oldUID = currUID;
         currUID += finalUID[currUID.length];
-        console.log("ending gen: " + oldUID + ". Next Gen:" + currUID);
+        verbose ? console.log("ending gen: " + oldUID + ". Next Gen:" + currUID) : "";
 
         // save
         saveSet(currUID, "M", futureMagentaNodes ?? new Set());
@@ -843,9 +859,8 @@ function deduceMrXLocationWithColors(startUID, finalUID) {
     }
     output = [magentaNodes ?? new Set(), yellowNodes ?? new Set(), grayNodes ?? new Set()];
 
-    console.log("finished looping. Returning with output: " + output);
+    verbose ? console.log("finished looping. Returning with output: " + output) : "";
     return output;
-
 }
 
 function getFutureNodes(currentNodeSet, ticketChar) {
@@ -946,48 +961,15 @@ function getAlteredPast(uid) {
     return null;
 }
 
-// calculating which nodes mr. x can currently be at
-function deduceMrXLocation(startPos, tickets) {
-
-    var currentLocations = new Set();
-    currentLocations.add(startPos);
-
-    for (i in tickets) {
-        var possibleNextLocations = new Set();
-
-        if (tickets[i] == "--") break;
-
-        var graph;
-        if (tickets[i] == "Taxi") {
-            graph = taxiGraph;
-        } else if (tickets[i] == "Bus") {
-            graph = busGraph;
-        } else if (tickets[i] == "UG") {
-            graph = ugGraph;
-        } else if (tickets[i] == "Black") {
-            graph = blackGraph;
-        }
-
-        for (j of currentLocations) {
-            // use the graph to update the list of next possible locations
-            var nodeNeighbors = graph.getNeighboors(j)
-            if (nodeNeighbors == null) {
-                // do nothing
-                // this exists to prevent trying to union an undefined set
-            } else {
-                possibleNextLocations = possibleNextLocations.union(nodeNeighbors);
-            }
-        }
-        currentLocations = possibleNextLocations;
-    }
-    return currentLocations;
-}
-
 function getFromDropdown(id) {
     var e = document.getElementById(id);
-    var value = e.value;
     var text = e.options[e.selectedIndex].text;
     return text;
+}
+
+function setDropdown(id, value) {
+    document.getElementById(id).value = value;
+    document.getElementById(id).dispatchEvent(new Event('change'));
 }
 
 function getUID(startPos, tickets) {
@@ -1025,12 +1007,50 @@ function uidToPositionAndTickets(uid) {
     return [pos, tickets];
 }
 
-var syImg = document.getElementById("scotlandyardimage");
-var canvas = document.getElementById("myCanvas");
-var magentaFilter = "invert(56%) sepia(98%) saturate(7488%) hue-rotate(295deg) brightness(116%) contrast(135%)  opacity(45%)";
-var yellowFilter = "invert(81%) sepia(88%) saturate(1360%) hue-rotate(355deg) brightness(455%) contrast(106%) opacity(60%)";
-var grayFilter = "invert(54%) sepia(0%) saturate(1000%) hue-rotate(224deg) brightness(45%) contrast(87%)  opacity(60%)";
+function renderMrXSymbol(node) {
+    if(!node || node < 1 || node > 199) {
+        return;
+    }
 
+    // if no mr. x symbol, make one
+    xSymbol = document.getElementById("xMarksTheSpot");
+    if(!xSymbol) {
+        xSymbol = document.createElement("img");
+        xSymbol.id = "xMarksTheSpot";
+        xSymbol.src = "redX.png"
+        xSymbol.style.zIndex = 11;
+        xSymbol.style.position = "absolute"
+        var ratio = syImg.width / 781;
+        var diameter = 40 * ratio;
+        xSymbol.style.width = diameter + "px";
+        xSymbol.style.height = diameter + "px";
+        xSymbol.oncontextmenu = (ev) => {
+            imageRightClick(ev);
+            return false;
+        };    
+
+        xSymbol.style.filter = "saturate(0%) opacity(60%)"
+
+        x = circleData[node][0] * syImg.width;
+        y = circleData[node][1] * syImg.height;
+        
+        xSymbol.style.left = (x - diameter / 2) + "px"
+        xSymbol.style.top = (y - diameter / 2) + "px"
+
+        canvas.appendChild(xSymbol);
+    } else { // symbol already exists
+        // move it
+        x = circleData[node][0] * syImg.width;
+        y = circleData[node][1] * syImg.height;
+        var ratio = syImg.width / 781;
+        var diameter = 40 * ratio;
+        
+        xSymbol.style.width = diameter + "px";
+        xSymbol.style.height = diameter + "px";
+        xSymbol.style.left = (x - diameter / 2) + "px"
+        xSymbol.style.top = (y - diameter / 2) + "px"
+    }
+}
 
 function drawCircle(x, y, node, colorChar) {
     // TODO - resize canvas, redraw rings on resizing window
@@ -1039,18 +1059,20 @@ function drawCircle(x, y, node, colorChar) {
     canvas.style.top = syImg.offsetTop + "px";
     canvas.style.width = syImg.width + "px";
     canvas.style.height = syImg.height + "px";
-    // canvas.style.pointerEvents = "none"
 
     let ring = document.createElement("img");
     ring.id = "ring" + node;
-    // ring.style.zIndex = 1;
+    ring.style.zIndex = 10;
     ring.src = "circle-64.png";
     ring.style.position = "absolute";
     var ratio = syImg.width / 781;
     var diameter = 40 * ratio;
     ring.style.width = diameter + "px";
     ring.style.height = diameter + "px";
-    // ring.style.pointerEvents = "none"
+    ring.oncontextmenu = (ev) => {
+        imageRightClick(ev);
+        return false;
+    };
 
     if (colorChar == "Y") {
         ring.style.filter = yellowFilter;
@@ -1083,6 +1105,7 @@ function ringClick(ring, node) {
     saveDataRemoveNode(uid, "Y", node);
     saveDataRemoveNode(uid, "G", node);
 
+    // add to correct save data 
     if (ring.dataset.numClicks == 0) {
         ring.style.filter = magentaFilter;
         saveDataAddNode(uid, "M", node);
@@ -1093,52 +1116,55 @@ function ringClick(ring, node) {
         ring.style.filter = grayFilter;
         saveDataAddNode(uid, "G", node);
     }
+
+    // kill all saved futures
+    Object.keys(localStorage).forEach(function (key) {
+        if (key.includes(uid) && key.length > uid.length + 1) {
+            localStorage.removeItem(key);
+        } else {
+        }
+    });
 }
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-// used to get the location data of each node
-// var numClicks = 0;
-// var bigOutput = "";
-// function imageClick(evt) {
-//     var x = (evt.pageX - $('#scotlandyardimage').offset().left);
-//     var y = (evt.pageY - $('#scotlandyardimage').offset().top);
+function imageRightClick(evt) {
+    console.log("clicked")
+    var x = (evt.pageX - $('#scotlandyardimage').offset().left) / syImg.width;
+    var y = (evt.pageY - $('#scotlandyardimage').offset().top) / syImg.height;
 
-//     var out = "node " + numClicks + ", x:" + x + ", y:" + y;
-//     console.log(out);
-//     bigOutput += out + "\n";
+    // find closest node
+    var minDist = Infinity;
+    var closestNode = -1;
+    // loop through all nodes
+    for (i in circleData) {
+        // start at 1 b/c index 0 is empty, so that index == node
+        magSq = distSq(x, y, circleData[i][0], circleData[i][1]);
+        if (magSq < minDist) {
+            minDist = magSq;
+            closestNode = i;
+        }
+    }
 
-//     drawCircle(x, y);
-//     numClicks += 1;
-// }
+    // set input box to be the number of that node
+    if (closestNode != -1) {
+        document.getElementById('xreveallocation').value = closestNode;
 
-// onReady() function
-$(function () {
-    // used to get locations for all the circles
-    //document.getElementById("scotlandyardimage").addEventListener("click", imageClick);
+        // fake a change event
+        document.getElementById('xreveallocation').dispatchEvent(new Event('change'));
+    }
 
-    syImg = document.getElementById("scotlandyardimage");
-    canvas = document.getElementById("myCanvas");
+    return false; // prevent context menu from appearing
+}
 
-    //TODO remove this :)
-    localStorage.clear();
+function distSq(x1, y1, x2, y2) {
+    dsq = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+    return dsq;
+}
 
-
-    document.getElementById("ticket1").addEventListener("change", (e) => { updateUIDandGetInput(); })
-    document.getElementById("ticket2").addEventListener("change", (e) => { updateUIDandGetInput(); })
-    document.getElementById("ticket3").addEventListener("change", (e) => { updateUIDandGetInput(); })
-    document.getElementById("ticket4").addEventListener("change", (e) => { updateUIDandGetInput(); })
-    document.getElementById("ticket5").addEventListener("change", (e) => { updateUIDandGetInput(); })
-    document.getElementById("ticket6").addEventListener("change", (e) => { updateUIDandGetInput(); })
-})
-
-function updateUIDandGetInput() {
-
-    // clear old circles
-    canvas.innerHTML = "";
-
+function getInputUID() {
     // get input
     var startPos = parseInt(document.getElementById('xreveallocation').value);
     var tickets = [];
@@ -1152,24 +1178,153 @@ function updateUIDandGetInput() {
     // input verification
     if (isNaN(startPos) || startPos < 1 || startPos > 199) {
         document.getElementById("feedback").innerHTML = "must be a valid number between 1 and 199. "
-        return;
+        return null;
     } else {
         document.getElementById("feedback").innerHTML = ""
     }
 
-    // get uid
-    uid = getUID(startPos, tickets);
-
-    return [startPos, tickets];
+    return getUID(startPos, tickets);
 }
 
+// load data & render if possible. returns true if loaded something
+function loadAndRenderUID(uid) {
+    magentaNodes = loadSet(uid, "M");
+    yellowNodes = loadSet(uid, "Y");
+    grayNodes = loadSet(uid, "G");
 
-// TODO: after visual output is created, make a thing where i can just click next and it shows all the connections of that node (to check that all the data i input was correct)
+    var mangentaExists = magentaNodes && magentaNodes.size > 0;
+    var yellowExists = yellowNodes && yellowNodes.size > 0;
+    var grayExists = grayNodes && grayNodes.size > 0;
 
-// TODO: new feature set: ability to mark certain futures as impossible, then the computer remembers it for when we input the next ticket, then the next deduce! will show purple for unmarked futures, and gray for futures only reachable through "impossible" spots
-// Todo: button to reset marks? 
+    // if anything was loaded, we should clear & render
+    if (mangentaExists || yellowExists || grayExists) {
+        renderCircles(magentaNodes, yellowNodes, grayNodes);
+        return true;
+    }
+    return false;
+}
 
-// qol todo: no more deduce button? it just runs whenever you change an input field?
-// qol todo: right click on map to set node as Mr. X
-// qol todo: keyboard shortcuts for adding next ticket (backspace to delete) letters, but also number keys
-// qol todo: add instructions
+function colorDropdowns() {
+    
+    for(var i = 1; i <=6; i++) {
+        elem = document.getElementById("ticket" + i);
+        console.log(elem.id);
+        if(elem.value == "Taxi") {
+            elem.style.color = "#000000"
+            elem.style.background = "#F6ED5C";
+        } else if (elem.value == "Bus") {
+            elem.style.color = "#000000"
+            elem.style.background = "#8ADCF3";
+        } else if (elem.value == "UG") {
+            elem.style.color = "#000000"
+            elem.style.background = "#FF765E";
+        } else if (elem.value == "Black") {
+            elem.style.color = "#FFFFFF"
+            elem.style.background = "#141E28";
+        } else {
+            elem.style.color = "#000000"
+            elem.style.background = "#FFFFFF"
+        }
+    }
+}
+
+function onInputChange() {
+    uid = getInputUID();
+    colorDropdowns();
+    renderMrXSymbol(parseInt(uid));
+    if (!loadAndRenderUID(uid)) {
+        // do a deduce only if load & render didn't load anything
+        scotlandYardSolver();
+    }
+}
+
+function clearAllSavedDataButton() {
+    var respose = confirm("Do you want to clear all saved data?");
+    if (respose) {
+        localStorage.clear();
+    }
+}
+
+function setNextEmptyTicket(ticketType) {
+    var tickets = [];
+    tickets[0] = getFromDropdown("ticket1");
+    tickets[1] = getFromDropdown("ticket2");
+    tickets[2] = getFromDropdown("ticket3");
+    tickets[3] = getFromDropdown("ticket4");
+    tickets[4] = getFromDropdown("ticket5");
+    tickets[5] = getFromDropdown("ticket6");
+
+    for (let i = 0; i < tickets.length; i++) {
+        if (tickets[i] == "--") {
+            setDropdown("ticket" + (i + 1), ticketType);
+            return;
+        }
+    }
+}
+
+function clearLastFilledTicket() {
+    var tickets = [];
+    tickets[0] = getFromDropdown("ticket1");
+    tickets[1] = getFromDropdown("ticket2");
+    tickets[2] = getFromDropdown("ticket3");
+    tickets[3] = getFromDropdown("ticket4");
+    tickets[4] = getFromDropdown("ticket5");
+    tickets[5] = getFromDropdown("ticket6");
+
+    for (let i = tickets.length - 1; i >= 0; i--) {
+        if (tickets[i] != "--") {
+            setDropdown("ticket" + (i + 1), "--");
+            return;
+        }
+    }
+}
+
+// onReady() function
+$(function () {
+
+    // load some global variables
+    syImg = document.getElementById("scotlandyardimage");
+    canvas = document.getElementById("myCanvas");
+
+    // right click events
+    syImg.oncontextmenu = (ev) => {
+        imageRightClick(ev);
+        return false; // hides the context menu
+    };
+    canvas.oncontextmenu = (ev) => {
+        imageRightClick(ev);
+        return false;
+    }
+
+
+    // detect changes to mr. x location
+    document.getElementById('xreveallocation').addEventListener("change", onInputChange);
+
+    // when typing in mr. x location box, do not trigger keyboard shortcuts
+    document.getElementById('xreveallocation').onkeydown = (ev) => {
+        ev.stopPropagation();
+    };
+
+    // detect changes to ticket dropdowns
+    document.getElementById("ticket1").addEventListener("change", onInputChange);
+    document.getElementById("ticket2").addEventListener("change", onInputChange);
+    document.getElementById("ticket3").addEventListener("change", onInputChange);
+    document.getElementById("ticket4").addEventListener("change", onInputChange);
+    document.getElementById("ticket5").addEventListener("change", onInputChange);
+    document.getElementById("ticket6").addEventListener("change", onInputChange);
+
+    // keyboard shortcuts
+    document.onkeydown = (ev) => {
+        if (ev.key == "1" || ev.key == "t") {
+            setNextEmptyTicket("Taxi");
+        } else if (ev.key == "2" || ev.key == "b") {
+            setNextEmptyTicket("Bus");
+        } else if (ev.key == "3" || ev.key == "u") {
+            setNextEmptyTicket("UG");
+        } else if (ev.key == "4" || ev.key == "x" || ev.key == "l") {
+            setNextEmptyTicket("Black");
+        } else if (ev.key == "Backspace") {
+            clearLastFilledTicket();
+        }
+    }
+})
