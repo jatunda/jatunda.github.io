@@ -748,50 +748,136 @@ function scotlandyardsolver() {
     // Used to get all the locations for the circles. 
     //console.log(bigOutput);
 
-    // clear old circles
-    canvas.innerHTML = "";
+    [startPos, tickets] = updateUIDandGetInput();
 
-    // get input
-    var startPos = parseInt(document.getElementById('xreveallocation').value);
-    var tickets = [];
-    tickets[0] = getFromDropdown("ticket1");
-    tickets[1] = getFromDropdown("ticket2");
-    tickets[2] = getFromDropdown("ticket3");
-    tickets[3] = getFromDropdown("ticket4");
-    tickets[4] = getFromDropdown("ticket5");
-    tickets[5] = getFromDropdown("ticket6");
-
-
-    // input verification
-    if (isNaN(startPos) || startPos < 1 || startPos > 199) {
-        document.getElementById("feedback").innerHTML = "must be a valid number between 1 and 199. "
-        return;
-    } else {
-        document.getElementById("feedback").innerHTML = ""
-    }
-
-    // console.log(uidToPositionAndTickets(getUID(startPos, tickets)));
-    // get uid
-    var uid = getUID(startPos, tickets);
-
-    // call our function that actually calculates possible locations
-    var results = deduceMrXLocation(startPos, tickets);
+    // get the closest preceding uid that has at least some yellow or gray saved
+    alteredPastUID = getAlteredPast(uid);
 
     // TODO: potentially mark map with startPos of Mr. X
 
-    // debug output
-    // document.getElementById("feedback").innerHTML =
-    //     document.getElementById("feedback").innerHTML + [...results].join(', ');
-
-    // draw circles on the possible spaces
-    for (node of results) {
-        drawCircle(...circleData[node], node);
+    // if no altered past
+    if (alteredPastUID == null) {
+        startUID = parseInt(uid);
+    } else { // there is an altered past to calculate from
+        startUID = alteredPastUID
     }
 
+    [magentaNodes, yellowNodes, grayNodes] = deduceMrXLocationWithColors(startUID, uid);
+
+    // render the 3 sets
+    for (node of magentaNodes) {
+        drawCircle(...circleData[node], node, "M");
+    }
+    for (node of yellowNodes) {
+        drawCircle(...circleData[node], node, "Y");
+    }
+    for (node of grayNodes) {
+        drawCircle(...circleData[node], node, "G");
+    }
 
     // save results
-    localStorage.setItem(uid, JSON.stringify([...results]));
+    saveSet(uid, "M", magentaNodes);
+    saveSet(uid, "Y", yellowNodes);
+    saveSet(uid, "G", grayNodes);
+
+    // todo: possibly save precalculated stuff and load?
+
 };
+
+function deduceMrXLocationWithColors(startUID, finalUID) {
+
+    console.log("from " + startUID + " to " + finalUID);
+    startUID += "";
+
+    magentaNodes = loadSet(startUID, "M");
+    yellowNodes = loadSet(startUID, "Y");
+    grayNodes = loadSet(startUID, "G");
+
+    // fill in a first gen when there is nothing saved
+    if (magentaNodes == null && yellowNodes == null && grayNodes == null) {
+        magentaNodes = new Set();
+        magentaNodes.add(parseInt(startUID));
+        console.log("no memory found. starting with just " + parseInt(startUID));
+        saveSet(startUID, "M", magentaNodes);
+    }
+
+    currUID = startUID + "";
+    console.log("entering loop with startUID " + currUID + " and finalUID " + finalUID);
+    // for every generation: 
+    while (currUID.length < finalUID.length) {
+        // for each color, create neighbor sets
+        ticketChar = finalUID[currUID.length];
+        console.log("loop for uid " + currUID + ". Ticket is " + ticketChar);
+
+        futureMagentaNodes = getFutureNodes(magentaNodes, ticketChar);
+        futureYellowNodes = getFutureNodes(yellowNodes, ticketChar);
+        futureGrayNodes = getFutureNodes(grayNodes, ticketChar);
+
+        // TODO when merging this with the old deduction function, 
+        // make sure this can account for the case where there is no savedata
+
+        // cull the nodes that are taken by a high priority color
+        if (futureYellowNodes != null && futureMagentaNodes != null) {
+            futureYellowNodes = futureYellowNodes.difference(futureMagentaNodes);
+        }
+        if (futureGrayNodes != null && futureYellowNodes != null) {
+            futureGrayNodes = futureGrayNodes.difference(futureYellowNodes);
+        }
+        if (futureGrayNodes != null && futureMagentaNodes != null) {
+            futureGrayNodes = futureGrayNodes.difference(futureMagentaNodes);
+        }
+
+        // next gen
+        var oldUID = currUID;
+        currUID += finalUID[currUID.length];
+        console.log("ending gen: " + oldUID + ". Next Gen:" + currUID);
+
+        // save
+        saveSet(currUID, "M", futureMagentaNodes ?? new Set());
+        saveSet(currUID, "Y", futureYellowNodes ?? new Set());
+        saveSet(currUID, "G", futureGrayNodes ?? new Set());
+
+        magentaNodes = futureMagentaNodes;
+        yellowNodes = futureYellowNodes;
+        grayNodes = futureGrayNodes;
+    }
+    output = [magentaNodes ?? new Set(), yellowNodes ?? new Set(), grayNodes ?? new Set()];
+
+    console.log("finished looping. Returning with output: " + output);
+    return output;
+
+}
+
+function getFutureNodes(currentNodeSet, ticketChar) {
+
+    // get the graph for the appropriate ticket type
+    var graph = null;
+    if (ticketChar == "T") {
+        graph = taxiGraph;
+    } else if (ticketChar == "B") {
+        graph = busGraph;
+    } else if (ticketChar == "U") {
+        graph = ugGraph;
+    } else if (ticketChar == "X") {
+        graph = blackGraph;
+    } else {
+        return null;
+    }
+
+    var possibleNextLocations = new Set();
+    for (j of currentNodeSet ?? new Set()) {
+        // use the graph to update the list of next possible locations
+        var nodeNeighbors = graph.getNeighboors(j)
+        if (nodeNeighbors == null) {
+            // do nothing
+            // this exists to prevent trying to union an undefined set
+        } else {
+            possibleNextLocations = possibleNextLocations.union(nodeNeighbors);
+        }
+    }
+    return possibleNextLocations;
+
+}
 
 function saveList(uid, uidPrefix, nodeList) {
     localStorage.setItem(uidPrefix + uid, JSON.stringify(nodeList));
@@ -803,7 +889,7 @@ function saveSet(uid, uidPrefix, nodeSet) {
 
 function loadList(uid, uidPrefix) {
     oldResultsList = JSON.parse(localStorage.getItem(uidPrefix + uid));
-    if(oldResultsList == null) {
+    if (oldResultsList == null) {
         return null;
     }
     return (oldResultsList);
@@ -811,7 +897,7 @@ function loadList(uid, uidPrefix) {
 
 function loadSet(uid, uidPrefix) {
     oldResultsList = JSON.parse(localStorage.getItem(uidPrefix + uid));
-    if(oldResultsList == null) {
+    if (oldResultsList == null) {
         return null;
     }
     return new Set(oldResultsList);
@@ -820,7 +906,7 @@ function loadSet(uid, uidPrefix) {
 function saveDataRemoveNode(uid, uidPrefix, nodeToRemove) {
     // load
     nodeSet = loadSet(uid, uidPrefix);
-    if(nodeSet == null) return;
+    if (nodeSet == null) return;
     // edit
     nodeSet.delete(nodeToRemove);
     // save
@@ -830,7 +916,7 @@ function saveDataRemoveNode(uid, uidPrefix, nodeToRemove) {
 function saveDataAddNode(uid, uidPrefix, nodeToAdd) {
     // load
     nodeSet = loadSet(uid, uidPrefix);
-    if(nodeSet == null) {
+    if (nodeSet == null) {
         nodeSet = new Set();
     }
     // edit
@@ -839,10 +925,30 @@ function saveDataAddNode(uid, uidPrefix, nodeToAdd) {
     saveSet(uid, uidPrefix, nodeSet);
 }
 
+function getAlteredPast(uid) {
+    for (let i = 0; i < uid.length; i++) {
+        // get all past uids in order (most recent first)
+        var newUID = uid.substring(0, uid.length - 1 - i);
+        if (parseInt(uid) != parseInt(newUID)) {
+            return null;
+        }
+
+        // check if there is at least 1 yellow or gray
+        var yellowList = loadList(newUID, "Y");
+        var grayList = loadList(newUID, "G");
+        var yellowListExists = yellowList != null && yellowList.length > 0;
+        var grayListExists = grayList != null && grayList.length > 0;
+
+        if (yellowListExists || grayListExists) {
+            return newUID;
+        }
+    }
+    return null;
+}
+
 // calculating which nodes mr. x can currently be at
 function deduceMrXLocation(startPos, tickets) {
 
-    //document.getElementById("feedback").innerHTML = document.getElementById("feedback").innerHTML + startPos + " -> ";
     var currentLocations = new Set();
     currentLocations.add(startPos);
 
@@ -884,11 +990,10 @@ function getFromDropdown(id) {
     return text;
 }
 
-
 function getUID(startPos, tickets) {
     var output = "" + startPos;
-    for(i in tickets) {
-        if(tickets[i] == "--") {
+    for (i in tickets) {
+        if (tickets[i] == "--") {
             return output;
         } else if (tickets[i] == "Black") {
             output += "X";
@@ -902,9 +1007,9 @@ function getUID(startPos, tickets) {
 function uidToPositionAndTickets(uid) {
     var pos = parseInt(uid);
     var tickets = [];
-    for(i in uid) {
+    for (i in uid) {
         char = uid[i];
-        if(char == "T") {
+        if (char == "T") {
             tickets.push("Taxi");
         } else if (char == "B") {
             tickets.push("Bus");
@@ -914,12 +1019,11 @@ function uidToPositionAndTickets(uid) {
             tickets.push("Black");
         }
     }
-    while(tickets.length < 6) {
+    while (tickets.length < 6) {
         tickets.push("--");
     }
     return [pos, tickets];
 }
-
 
 var syImg = document.getElementById("scotlandyardimage");
 var canvas = document.getElementById("myCanvas");
@@ -927,7 +1031,8 @@ var magentaFilter = "invert(56%) sepia(98%) saturate(7488%) hue-rotate(295deg) b
 var yellowFilter = "invert(81%) sepia(88%) saturate(1360%) hue-rotate(355deg) brightness(455%) contrast(106%) opacity(60%)";
 var grayFilter = "invert(54%) sepia(0%) saturate(1000%) hue-rotate(224deg) brightness(45%) contrast(87%)  opacity(60%)";
 
-function drawCircle(x, y, node) {
+
+function drawCircle(x, y, node, colorChar) {
     // TODO - resize canvas, redraw rings on resizing window
     canvas.style.position = "absolute";
     canvas.style.left = syImg.offsetLeft + "px";
@@ -946,14 +1051,22 @@ function drawCircle(x, y, node) {
     ring.style.width = diameter + "px";
     ring.style.height = diameter + "px";
     // ring.style.pointerEvents = "none"
-    
-    ring.style.filter = magentaFilter;
-    ring.dataset.numClicks = 0;
-    x = x*syImg.width;
-    y = y*syImg.height;
+
+    if (colorChar == "Y") {
+        ring.style.filter = yellowFilter;
+        ring.dataset.numClicks = 1;
+    } else if (colorChar == "G") {
+        ring.style.filter = grayFilter;
+        ring.dataset.numClicks = 2;
+    } else {
+        ring.style.filter = magentaFilter;
+        ring.dataset.numClicks = 0;
+    }
+    x = x * syImg.width;
+    y = y * syImg.height;
     ring.style.left = (x - diameter / 2) + "px"
     ring.style.top = (y - diameter / 2) + "px"
-    ring.addEventListener("click",() => ringClick(ring, node));
+    ring.addEventListener("click", () => ringClick(ring, node));
 
     canvas.appendChild(ring);
 }
@@ -961,7 +1074,7 @@ function drawCircle(x, y, node) {
 function ringClick(ring, node) {
     ring.dataset.numClicks = parseInt(ring.dataset.numClicks) + 1;
 
-    if(ring.dataset.numClicks >= 3 ) {
+    if (ring.dataset.numClicks >= 3) {
         ring.dataset.numClicks = 0;
     }
 
@@ -970,7 +1083,7 @@ function ringClick(ring, node) {
     saveDataRemoveNode(uid, "Y", node);
     saveDataRemoveNode(uid, "G", node);
 
-    if(ring.dataset.numClicks == 0) {
+    if (ring.dataset.numClicks == 0) {
         ring.style.filter = magentaFilter;
         saveDataAddNode(uid, "M", node);
     } else if (ring.dataset.numClicks == 1) {
@@ -1012,7 +1125,43 @@ $(function () {
     //TODO remove this :)
     localStorage.clear();
 
+
+    document.getElementById("ticket1").addEventListener("change", (e) => { updateUIDandGetInput(); })
+    document.getElementById("ticket2").addEventListener("change", (e) => { updateUIDandGetInput(); })
+    document.getElementById("ticket3").addEventListener("change", (e) => { updateUIDandGetInput(); })
+    document.getElementById("ticket4").addEventListener("change", (e) => { updateUIDandGetInput(); })
+    document.getElementById("ticket5").addEventListener("change", (e) => { updateUIDandGetInput(); })
+    document.getElementById("ticket6").addEventListener("change", (e) => { updateUIDandGetInput(); })
 })
+
+function updateUIDandGetInput() {
+
+    // clear old circles
+    canvas.innerHTML = "";
+
+    // get input
+    var startPos = parseInt(document.getElementById('xreveallocation').value);
+    var tickets = [];
+    tickets[0] = getFromDropdown("ticket1");
+    tickets[1] = getFromDropdown("ticket2");
+    tickets[2] = getFromDropdown("ticket3");
+    tickets[3] = getFromDropdown("ticket4");
+    tickets[4] = getFromDropdown("ticket5");
+    tickets[5] = getFromDropdown("ticket6");
+
+    // input verification
+    if (isNaN(startPos) || startPos < 1 || startPos > 199) {
+        document.getElementById("feedback").innerHTML = "must be a valid number between 1 and 199. "
+        return;
+    } else {
+        document.getElementById("feedback").innerHTML = ""
+    }
+
+    // get uid
+    uid = getUID(startPos, tickets);
+
+    return [startPos, tickets];
+}
 
 
 // TODO: after visual output is created, make a thing where i can just click next and it shows all the connections of that node (to check that all the data i input was correct)
@@ -1020,13 +1169,7 @@ $(function () {
 // TODO: new feature set: ability to mark certain futures as impossible, then the computer remembers it for when we input the next ticket, then the next deduce! will show purple for unmarked futures, and gray for futures only reachable through "impossible" spots
 // Todo: button to reset marks? 
 
-// onclick: save all magenta/yellow/gray for each uid 
-// when pressing deduce, 
-//// if uid not found, create a full magenta save
-//// use the closest preceding uid that isn't all magenta
-//// create neighbor sets for magenta, yellow, gray
-//// then do set subtraction. yellow -= magenta; gray -= (yellow + magenta);
-//// then, render the 3 sets
-
-
-// todo: no more deduce button? it just runs whenever you change an input field?
+// qol todo: no more deduce button? it just runs whenever you change an input field?
+// qol todo: right click on map to set node as Mr. X
+// qol todo: keyboard shortcuts for adding next ticket (backspace to delete) letters, but also number keys
+// qol todo: add instructions
