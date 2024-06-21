@@ -1024,10 +1024,7 @@ function renderMrXSymbol(node) {
         var diameter = 40 * ratio;
         xSymbol.style.width = diameter + "px";
         xSymbol.style.height = diameter + "px";
-        xSymbol.oncontextmenu = (ev) => {
-            imageRightClick(ev);
-            return false;
-        };    
+        xSymbol.style.pointerEvents = "none";  
 
         xSymbol.style.filter = "saturate(0%) opacity(60%)"
 
